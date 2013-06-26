@@ -2,10 +2,10 @@
 #      Main Configs       #
 # ----------------------- #
 
-url: http://yoursite.com
-title: My Octopress Blog
-subtitle: A blogging framework for hackers.
-author: Your Name
+url: http://techblog.instructure.com
+title: Instructure Tech Blog
+subtitle: Torpedos of Nerdy Truth from the Engineering team at Instructure.
+author: Instructure Engineering
 simple_search: http://google.com/search
 description:
 
