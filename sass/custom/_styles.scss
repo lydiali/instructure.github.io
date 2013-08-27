@@ -1,2 +1,183 @@
 // This File is imported last, and will override other styles in the cascade
 // Add styles here to make changes without digging in too much
+
+html{
+	background-image: none;
+	background-color: #f8f9fa;
+	padding: 0 2em 2em;
+}
+.fat-people{
+	background: url(../images/fat-people.png) no-repeat center center;
+	height: 100px;
+	width: 100px;
+	position: absolute;
+	top: 85px;
+	left: -2.7em;
+	display: block;
+	border: none;
+	z-index: 100;
+	border: 1px solid transparent;
+	-webkit-transition: all 1s ease-in-out;
+		-moz-transition: all 1s ease-in-out;
+		-o-transition: all 1s ease-in-out;
+		transition: all 1s ease-in-out;
+}
+.tiny-heads{
+	background: url(../images/skinny-heads.png) no-repeat center center;
+	height: 80px;
+	width: 80px;
+	position: absolute;
+	top: 96px;
+	left: -2.1em;
+	display: block;
+	border: none;
+	z-index: 0;
+	-webkit-transition: all 1.5s ease-in-out;
+		-moz-transition: all 1.5s ease-in-out;
+		-o-transition: all 1.5s ease-in-out;
+		transition: all 1.5s ease-in-out;
+}
+body{
+	position: static;
+	color: #5d5d5d;
+	font-family: "Source Sans Pro",sans-serif;
+}
+body>header h1 a, body>header h1 a:visited, body>header h1 a:hover{
+	color: #e13f32;
+}
+body>nav{
+	background: transparent;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	padding: 0.5em 2em;
+	box-sizing: border-box;
+	border: 0;
+	border-bottom: 1px solid #ccc;
+}
+body>nav a, body>nav a:visited{
+	color: #5d5d5d;
+	text-shadow: none;
+}
+a:hover, #content .blog-index article h1 a:hover, #content div.pagination a:hover, aside.sidebar a:hover, body>nav a:hover, #blog-archives h1 a:hover{
+	color: #e13f32;
+}
+body>nav li+li{
+	border-left: 0px;
+}
+body>nav li+li a{
+	border-left: 0;
+}
+body>nav form .search{
+	border: 1px solid #eee;
+	box-shadow: none;
+	border-radius: 0 !important;
+	background: #fff;
+	padding: 5px 10px !important;
+}
+body>header{
+	background: none;
+	padding-left: 0;
+	padding-right: 0;
+	padding-top: 6%;
+}
+body>header h1{
+	text-transform: uppercase;
+	font-weight: bold;
+	letter-spacing:-1.5px;
+	font-size: 2.8em;
+}
+body>header h2{
+	color: #5d5d5d;
+}
+body>div, #content>div, #content>article{
+	border-right: 1px solid #ddd;
+}
+article h1{
+	font-weight: lighter;
+}
+#blog-archives h2{
+	background: #e13f32;
+	color: #fff;
+	padding: 0 .2em .2em;
+}
+aside.sidebar, body>div{
+	background: #f6f6f6;
+	text-shadow: 0px;
+}
+aside.sidebar li{
+	border: 0px;
+	box-shadow: none;
+	list-style-type: square;
+margin-left: 1.3em;
+}
+aside.sidebar li a{
+	text-decoration: none;
+}
+aside.sidebar section h1{
+	border-bottom: 1px solid #ccc;
+	box-shadow: none;
+}
+#content{
+	background: #fff;
+	border: 1px solid #ddd;
+}
+.collapse-sidebar .toggle-sidebar{
+	background: #e13f32;
+}
+.collapse-sidebar .toggle-sidebar:hover{
+background: #e13f32;
+}
+.toggle-sidebar:after{
+	background: #e13f32;
+	border-radius: 0;
+	color: #fff;
+	text-shadow: none !important;
+}
+time{
+	font-weight: lighter;
+	font-style: italic;
+}
+footer[role="contentinfo"]{
+	margin-top: 3em;
+	border-radius: 0;
+	background: #d3d3d3;
+	border-bottom: 1px solid #aaa;
+	color: #3d3d3d;
+}
+
+//animationzz
+.fat-people:hover{
+	-moz-transform: rotate(360deg);
+	-webkit-transform: rotate(360deg);
+	-o-transform: rotate(360deg);
+	-ms-transform: rotate(360deg);
+	transform: rotate(360deg);
+}
+.fat-people:hover + .tiny-heads{
+	-moz-transform: rotate(-360deg);
+	-webkit-transform: rotate(-360deg);
+	-o-transform: rotate(-360deg);
+	-ms-transform: rotate(-360deg);
+	transform: rotate(-360deg);
+}
+
+// queries
+@media only screen and (max-width: 1340px) {
+  .fat-people {
+		display: none;
+  }
+	.tiny-heads:hover{
+		-moz-transform: rotate(-360deg);
+		-webkit-transform: rotate(-360deg);
+		-o-transform: rotate(-360deg);
+		-ms-transform: rotate(-360deg);
+		transform: rotate(-360deg);
+	}
+}
+@media only screen and (max-width: 1270px) {
+  .tiny-heads {
+		display: none;
+  }
+}
