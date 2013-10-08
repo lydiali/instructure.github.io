@@ -1,6 +1,13 @@
 <hgroup>
-  <h1><a href="{{ root_url }}/">{{ site.title }}</a></h1>
-  {% if site.subtitle %}
-    <h2>{{ site.subtitle }}</h2>
+  {% if page.show_homepage_banner %}
+    <h1><a href="{{ root_url }}">{{ site.home_title }}</a></h1>
+    {% if site.home_subtitle %}
+      <h2>{{ site.home_subtitle }}</h2>
+    {% endif %}
+  {% else %}
+    <h1><a href="{{ root_url }}">{{ site.title }}</a></h1>
+    {% if site.subtitle %}
+      <h2>{{ site.subtitle }}</h2>
+    {% endif %}
   {% endif %}
 </hgroup>

@@ -1,0 +1,18 @@
+.about-box {
+  background-color: #eaeaea;
+  padding: 20px;
+  font-size: 14px;
+  line-height: 22px;
+  margin-bottom: 20px;
+  .author-name {
+    font-weight: bold;
+  }
+  img.avatar {
+    margin: 0 20px 0 0;
+  }
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
