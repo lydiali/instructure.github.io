@@ -10,3 +10,12 @@ $sans: 'Source Sans Pro', sans-serif;
 $heading-font-family: 'Source Sans Pro', sans-serif;
 //$header-title-font-family: "Futura", sans-serif;
 //$header-subtitle-font-family: "Futura", sans-serif;
+
+h2 {
+  font-weight: 300 !important;
+  font-size: 1.2em !important;
+}
+h1.entry-title {
+  border-left: 5px solid #E13F32;
+  padding-left: 15px;
+}
