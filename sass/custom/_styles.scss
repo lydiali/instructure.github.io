@@ -11,8 +11,8 @@ html{
   height: 100px;
   width: 100px;
   position: absolute;
-  top: 85px;
-  left: -2.7em;
+  top: 75px;
+  left: 0px;
   display: block;
   border: none;
   z-index: 100;
@@ -27,8 +27,8 @@ html{
   height: 80px;
   width: 80px;
   position: absolute;
-  top: 96px;
-  left: -2.1em;
+  top: 85px;
+  left: 10px;
   display: block;
   border: none;
   z-index: 0;
@@ -41,6 +41,7 @@ body{
   position: static;
   color: #5d5d5d;
   font-family: "Source Sans Pro",sans-serif;
+  max-width: 980px;
 }
 body>header h1 a, body>header h1 a:visited, body>header h1 a:hover{
   color: #e13f32;
@@ -81,6 +82,13 @@ body>header{
   padding-left: 0;
   padding-right: 0;
   padding-top: 6%;
+  position: relative;
+}
+body>header hgroup{
+  margin-left: 120px;
+}
+body>header hgroup h2{
+  font-size: 1em !important;
 }
 body>header h1{
   text-transform: uppercase;
@@ -102,6 +110,9 @@ article h1{
   color: #fff;
   padding: 0 .2em .2em;
 }
+aside.sidebar{
+	max-width: 220px;
+}
 aside.sidebar, body>div{
   background: #f6f6f6;
   text-shadow: 0px;
@@ -122,6 +133,7 @@ aside.sidebar section h1{
 #content{
   background: #fff;
   border: 1px solid #ddd;
+  margin-right: 260px;
 }
 .collapse-sidebar .toggle-sidebar{
   background: #e13f32;
@@ -147,7 +159,7 @@ footer[role="contentinfo"]{
   color: #3d3d3d;
 }
 
-//animationzz
+// ANIMATIONATIOR
 .fat-people:hover{
   -moz-transform: rotate(360deg);
   -webkit-transform: rotate(360deg);
@@ -163,16 +175,7 @@ footer[role="contentinfo"]{
   transform: rotate(-360deg);
 }
 
-// queries
-@media only screen and (max-width: 1340px) {
-  .fat-people {
-    display: none;
-  }
-  .tiny-heads {
-    display: none;
-  }
-}
-
+// SLIDERNATOR
 .bx-wrapper {
   border: 0px !important;
 }
@@ -196,3 +199,48 @@ footer[role="contentinfo"]{
   bottom: -35px !important;
 }
 
+// QUERIES
+@media only screen and (max-width: 992px){
+	body>header, body>nav, body>footer, body #content>article, body #content>div>article, body #content>div>section {
+	padding-left: 40px;
+	padding-right: 40px;
+	}
+  body>header hgroup{
+    margin-left: 80px;
+  }
+  .fat-people{
+    top: 60px;
+  }
+  .tiny-heads{
+    top: 70px;
+  }
+}
+
+@media only screen and (max-width: 767px){
+	#content{
+		margin-right: 0;
+	}
+	aside.sidebar {
+		max-width: 100%;
+	}
+	body>header{
+		padding: 10% 0% 3%;
+	}
+    body>header hgroup{
+    margin-left: 0;
+  }
+  .fat-people{
+    display: none;
+  }
+  .tiny-heads{
+    display: none;
+  }
+}
+@media only screen and (max-width: 549px){
+	body>header{
+		padding: 60px 5px 10px;
+	}
+	body>header h1{
+		font-size: 2.3em;
+	}
+}

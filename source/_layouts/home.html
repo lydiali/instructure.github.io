@@ -1,10 +1,11 @@
 {% capture root_url %}{{ site.root | strip_slash }}{% endcapture %}
 {% include head.html %}
 <body {% if page.body_id %} id="{{ page.body_id }}" {% endif %} class="no-sidebar">
-  <div class="fat-people"></div>
-  <div class="tiny-heads"></div>
+  
   
   <header role="banner">
+    <div class="fat-people"></div>
+    <div class="tiny-heads"></div>
     <hgroup>
       <h1><a href="{{ root_url }}/">{{ page.title }}</a></h1>
       {% if page.subtitle %}
