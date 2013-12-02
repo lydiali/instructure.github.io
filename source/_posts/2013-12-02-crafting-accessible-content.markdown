@@ -2,11 +2,12 @@
 layout: post
 title: "Crafting accessible content"
 author: Zach Pendleton
-date: 2013-09-13 09:52
+date: 2013-12-02 09:52
 comments: true
 categories:
 - accessibility
 - javascript
+- html
 ---
 
 At Instructure, we're moving more and more of our app to the client with technologies like [Ember.js](http://emberjs.com). While it and other JavaScript frameworks have made this transition easier, they've also introduced new challenges around keeping our content accessible.
