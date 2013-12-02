@@ -13,6 +13,11 @@ Octopress is [Jekyll](https://github.com/mojombo/jekyll) blogging at its finest.
 
 Check out [Octopress.org](http://octopress.org/docs) for guides and documentation.
 
+## Development
+
+When running the server locally, you may run into [issues](http://apple.stackexchange.com/questions/106550/safari-7-0-cannot-load-localhost) with Safari 7 not loading the blog if you are running OSX Mavericks. To resolve this, use `thin` as the web server.
+
+    $ bundle exec rake preview -s thin
 
 ## Contributing
 
