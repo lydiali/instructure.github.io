@@ -75,7 +75,7 @@ twitter_user:
 twitter_tweet_button: true
 
 # Google +1
-google_plus_one: false
+google_plus_one: true
 google_plus_one_size: medium
 
 # Google Plus Profile
@@ -96,7 +96,7 @@ disqus_short_name: canvasdevandfriends
 disqus_show_comment_count: true
 
 # Google Analytics
-google_analytics_tracking_id:
+google_analytics_tracking_id: UA-9138420-21
 
 # Facebook Like
 facebook_like: true
