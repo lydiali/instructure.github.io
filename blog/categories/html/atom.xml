@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: html | Instructure Tech Blog]]></title>
+  <link href="http://instructure.github.io/blog/categories/html/atom.xml" rel="self"/>
+  <link href="http://instructure.github.io/"/>
+  <updated>2013-12-03T15:24:01-07:00</updated>
+  <id>http://instructure.github.io/</id>
+  <author>
+    <name><![CDATA[Instructure Engineering]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Crafting accessible content]]></title>
+    <link href="http://instructure.github.io/blog/2013/12/02/crafting-accessible-content/"/>
+    <updated>2013-12-02T09:52:00-07:00</updated>
+    <id>http://instructure.github.io/blog/2013/12/02/crafting-accessible-content</id>
+    <content type="html"><![CDATA[<p>At Instructure, we&rsquo;re moving more and more of our app to the client with technologies like <a href="http://emberjs.com">Ember.js</a>. While it and other JavaScript frameworks have made this transition easier, they&rsquo;ve also introduced new challenges around keeping our content accessible.</p>
+
+<p>The old advice we&rsquo;ve all heard about using semantic markup, headers, and <code>alt</code> attributes on <code>&lt;img /&gt;</code> tags is still true, but it doesn&rsquo;t address how we can best develop accessible content in a rich client application. Despite rumors to the contrary, rich content <em>can</em> be accessible if we pay attention to a few basics.</p>
+
+<!--more-->
+
+
+<h2>Getting started with accessibility</h2>
+
+<p><blockquote><p>The Web is fundamentally designed to work for all people, whatever their hardware, software, language, culture, location, or physical or mental ability. When the Web meets this goal, it is accessible to people with a diverse range of hearing, movement, sight, and cognitive ability.</p><footer><strong>W3 <a href="http://www.w3.org/standards/webdesign/accessibility">http://www.w3.org/standards/webdesign/accessibility</a></strong></footer></blockquote></p>
+
+<p>Let&rsquo;s start with a few definitions:</p>
+
+<ul>
+<li><strong>Accessibility</strong>: Web content is accessible when it usable by persons with disabilities. While this includes users of screen readers, it also includes persons with cognitive and other disabilities.</li>
+<li><strong>WAI-ARIA</strong>: A suite of technologies designed to make rich Internet applications accessible to users with disabilities.</li>
+</ul>
+
+
+<p>Authoring accessible rich content most often means (1) using WAI-ARIA attributes such as <code>role</code> and <code>aria-expanded</code> to mark-up content in a machine-parseable way; (2) ensuring that all content is keyboard navigable; and (3) managing page focus.</p>
+
+<p>So what does all of this mean when you&rsquo;re developing widgets? Let&rsquo;s take a look at an example of a button set component.</p>
+
+<h2>Building a button set</h2>
+
+<p>We&rsquo;re going to build an accessible <a href="http://getbootstrap.com/components/#btn-groups">button set</a> using Twitter&rsquo;s Bootstrap styles and jQuery.</p>
+
+<p>Our button set is going to work like a filter, so users can only select one button at a time. This means it&rsquo;s like a radio button. Watch how we can use aria roles and attributes to convey that behavior to non-sighted users:</p>
+
+<p>```html</p>
+
+<div class="btn-group" role="radiogroup">
+  <button type="button"
+          class="btn btn-default active"
+          role="radio"
+          aria-checked="true">Open</button>
+  <button type="button"
+          class="btn btn-default"
+          role="radio"
+          aria-checked="false">Closed</button>
+</div>
+
+
+<p>```</p>
+
+<p>First, notice that we didn&rsquo;t change Twitter&rsquo;s recommended button set markup &mdash; we only augmented it with the <code>role</code> attributes and an <code>aria-checked</code> attribute. The <code>role</code> attribute describes the component&rsquo;s behavior to screen readers, and <code>aria-checked</code> attribute notifies users of the current option in the same way that the <code>active</code> class does for sighted users.</p>
+
+<p>Here&rsquo;s the JavaScript to make this happen:</p>
+
+<p>```javascript
+$.fn.buttonset = function() {
+  $(this).on(&lsquo;click&rsquo;, function(e) {</p>
+
+<pre><code>var $target = $(this);
+
+$target.siblings()
+  .removeClass('active')
+  .attr('aria-checked', false);
+
+$target
+  .addClass('active')
+  .attr('aria-checked', true);
+</code></pre>
+
+<p>  });
+};</p>
+
+<p>// usage
+$(&lsquo;.btn-group .btn&rsquo;).buttonset();
+```</p>
+
+<p>While we&rsquo;re defining this as a jQuery plugin, we could have just as easily made an Ember component, an Angular directive, or a Backbone view.</p>
+
+<p>We&rsquo;ve found that this level is often the best place for dealing with accessibility. By handling accessibility details in our reusable widgets and libraries we can code it once and benefit across our stack. New engineers can immediately start writing accessible code, and all engineers benefit from quick, accessible implementations of common patterns.</p>
+
+<p>In this case, our code is almost all standard jQuery. This solution doesn&rsquo;t require us to manage focus or worry about keyboard navigation because buttons are already in the tab order, but often widget markup will need a <code>tabindex=-1</code> attribute and calls like <code>$('.item').focus()</code> to ensure that screen reader users aren&rsquo;t lost on the page.</p>
+
+<p>Here&rsquo;s our component in action (it&rsquo;s easier to test with a screen reader if you pop out this example into its own page first):</p>
+
+<p><a class="jsbin-embed" href="http://jsbin.com/OBoqALa/1/embed?output">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script></p>
+
+<h2>Testing accessibility</h2>
+
+<p>If you&rsquo;re on a Mac, you already have the software you need to get started testing for accessibility. OSX ships with a screen reader, VoiceOver, that can be enabled in your System Preferences and activated by pressing Cmd-F5.</p>
+
+<p>If you&rsquo;re on Windows, take a look at the free <a href="http://www.nvaccess.org/">NVDA</a> or, if you&rsquo;re doing professional development, the more widely used <a href="http://www.freedomscientific.com/products/fs/jaws-product-page.asp">JAWS</a>.</p>
+
+<p>To ensure that everything we write is accessible, we test all new commits in VoiceOver and JAWS as well as in our supported browsers before merging to master. And while giving accessibility top priority alongside visual fidelity and layout initially slowed us down, we&rsquo;ve long since adjusted and now have  better code and a better product.</p>
+
+<h2>Wrapping up</h2>
+
+<p>Developing with accessibility in mind has been a great experience at Instructure. By starting with an eye to accessibility we&rsquo;ve been able to leverage WAI-ARIA tools to create rich, accessible content in an unobtrusive way.</p>
+
+<h3>Additional resources</h3>
+
+<p>To learn more about accessibility, take a look at the W3&rsquo;s <a href="http://www.w3.org/TR/wai-aria-practices">Authoring Practices</a> document. It covers additional topics like keyboard shortcuts, managing focus, and properly labeling content. The Illinois Center of Information Technology and Web Accessibility also have a great <a href="http://test.cita.uiuc.edu/aria/">collection of accessibility examples</a>.</p>
+]]></content>
+  </entry>
+  
+</feed>
