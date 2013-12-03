@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Instructure Tech Blog]]></title>
+  <link href="http://instructure.github.io/atom.xml" rel="self"/>
+  <link href="http://instructure.github.io/"/>
+  <updated>2013-12-03T15:24:01-07:00</updated>
+  <id>http://instructure.github.io/</id>
+  <author>
+    <name><![CDATA[Instructure Engineering]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Crafting accessible content]]></title>
+    <link href="http://instructure.github.io/blog/2013/12/02/crafting-accessible-content/"/>
+    <updated>2013-12-02T09:52:00-07:00</updated>
+    <id>http://instructure.github.io/blog/2013/12/02/crafting-accessible-content</id>
+    <content type="html"><![CDATA[<p>At Instructure, we&rsquo;re moving more and more of our app to the client with technologies like <a href="http://emberjs.com">Ember.js</a>. While it and other JavaScript frameworks have made this transition easier, they&rsquo;ve also introduced new challenges around keeping our content accessible.</p>
+
+<p>The old advice we&rsquo;ve all heard about using semantic markup, headers, and <code>alt</code> attributes on <code>&lt;img /&gt;</code> tags is still true, but it doesn&rsquo;t address how we can best develop accessible content in a rich client application. Despite rumors to the contrary, rich content <em>can</em> be accessible if we pay attention to a few basics.</p>
+
+<!--more-->
+
+
+<h2>Getting started with accessibility</h2>
+
+<blockquote><p>The Web is fundamentally designed to work for all people, whatever their hardware, software, language, culture, location, or physical or mental ability. When the Web meets this goal, it is accessible to people with a diverse range of hearing, movement, sight, and cognitive ability.</p><footer><strong>W3</strong> <cite><a href='http://www.w3.org/standards/webdesign/accessibility'>www.w3.org/standards/webdesign/&hellip;</a></cite></footer></blockquote>
+
+
+<p>Let&rsquo;s start with a few definitions:</p>
+
+<ul>
+<li><strong>Accessibility</strong>: Web content is accessible when it usable by persons with disabilities. While this includes users of screen readers, it also includes persons with cognitive and other disabilities.</li>
+<li><strong>WAI-ARIA</strong>: A suite of technologies designed to make rich Internet applications accessible to users with disabilities.</li>
+</ul>
+
+
+<p>Authoring accessible rich content most often means (1) using WAI-ARIA attributes such as <code>role</code> and <code>aria-expanded</code> to mark-up content in a machine-parseable way; (2) ensuring that all content is keyboard navigable; and (3) managing page focus.</p>
+
+<p>So what does all of this mean when you&rsquo;re developing widgets? Let&rsquo;s take a look at an example of a button set component.</p>
+
+<h2>Building a button set</h2>
+
+<p>We&rsquo;re going to build an accessible <a href="http://getbootstrap.com/components/#btn-groups">button set</a> using Twitter&rsquo;s Bootstrap styles and jQuery.</p>
+
+<p>Our button set is going to work like a filter, so users can only select one button at a time. This means it&rsquo;s like a radio button. Watch how we can use aria roles and attributes to convey that behavior to non-sighted users:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;btn-group&quot;</span> <span class="na">role=</span><span class="s">&quot;radiogroup&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">&quot;button&quot;</span>
+</span><span class='line'>          <span class="na">class=</span><span class="s">&quot;btn btn-default active&quot;</span>
+</span><span class='line'>          <span class="na">role=</span><span class="s">&quot;radio&quot;</span>
+</span><span class='line'>          <span class="na">aria-checked=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>Open<span class="nt">&lt;/button&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">&quot;button&quot;</span>
+</span><span class='line'>          <span class="na">class=</span><span class="s">&quot;btn btn-default&quot;</span>
+</span><span class='line'>          <span class="na">role=</span><span class="s">&quot;radio&quot;</span>
+</span><span class='line'>          <span class="na">aria-checked=</span><span class="s">&quot;false&quot;</span><span class="nt">&gt;</span>Closed<span class="nt">&lt;/button&gt;</span>
+</span><span class='line'><span class="nt">&lt;/div&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>First, notice that we didn&rsquo;t change Twitter&rsquo;s recommended button set markup &mdash; we only augmented it with the <code>role</code> attributes and an <code>aria-checked</code> attribute. The <code>role</code> attribute describes the component&rsquo;s behavior to screen readers, and <code>aria-checked</code> attribute notifies users of the current option in the same way that the <code>active</code> class does for sighted users.</p>
+
+<p>Here&rsquo;s the JavaScript to make this happen:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">buttonset</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="kd">var</span> <span class="nx">$target</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">$target</span><span class="p">.</span><span class="nx">siblings</span><span class="p">()</span>
+</span><span class='line'>      <span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">&#39;active&#39;</span><span class="p">)</span>
+</span><span class='line'>      <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;aria-checked&#39;</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nx">$target</span>
+</span><span class='line'>      <span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">&#39;active&#39;</span><span class="p">)</span>
+</span><span class='line'>      <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;aria-checked&#39;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// usage</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.btn-group .btn&#39;</span><span class="p">).</span><span class="nx">buttonset</span><span class="p">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>While we&rsquo;re defining this as a jQuery plugin, we could have just as easily made an Ember component, an Angular directive, or a Backbone view.</p>
+
+<p>We&rsquo;ve found that this level is often the best place for dealing with accessibility. By handling accessibility details in our reusable widgets and libraries we can code it once and benefit across our stack. New engineers can immediately start writing accessible code, and all engineers benefit from quick, accessible implementations of common patterns.</p>
+
+<p>In this case, our code is almost all standard jQuery. This solution doesn&rsquo;t require us to manage focus or worry about keyboard navigation because buttons are already in the tab order, but often widget markup will need a <code>tabindex=-1</code> attribute and calls like <code>$('.item').focus()</code> to ensure that screen reader users aren&rsquo;t lost on the page.</p>
+
+<p>Here&rsquo;s our component in action (it&rsquo;s easier to test with a screen reader if you pop out this example into its own page first):</p>
+
+<p><a class="jsbin-embed" href="http://jsbin.com/OBoqALa/1/embed?output">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script></p>
+
+<h2>Testing accessibility</h2>
+
+<p>If you&rsquo;re on a Mac, you already have the software you need to get started testing for accessibility. OSX ships with a screen reader, VoiceOver, that can be enabled in your System Preferences and activated by pressing Cmd-F5.</p>
+
+<p>If you&rsquo;re on Windows, take a look at the free <a href="http://www.nvaccess.org/">NVDA</a> or, if you&rsquo;re doing professional development, the more widely used <a href="http://www.freedomscientific.com/products/fs/jaws-product-page.asp">JAWS</a>.</p>
+
+<p>To ensure that everything we write is accessible, we test all new commits in VoiceOver and JAWS as well as in our supported browsers before merging to master. And while giving accessibility top priority alongside visual fidelity and layout initially slowed us down, we&rsquo;ve long since adjusted and now have  better code and a better product.</p>
+
+<h2>Wrapping up</h2>
+
+<p>Developing with accessibility in mind has been a great experience at Instructure. By starting with an eye to accessibility we&rsquo;ve been able to leverage WAI-ARIA tools to create rich, accessible content in an unobtrusive way.</p>
+
+<h3>Additional resources</h3>
+
+<p>To learn more about accessibility, take a look at the W3&rsquo;s <a href="http://www.w3.org/TR/wai-aria-practices">Authoring Practices</a> document. It covers additional topics like keyboard shortcuts, managing focus, and properly labeling content. The Illinois Center of Information Technology and Web Accessibility also have a great <a href="http://test.cita.uiuc.edu/aria/">collection of accessibility examples</a>.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Hello World!]]></title>
+    <link href="http://instructure.github.io/blog/2013/12/02/hello-world/"/>
+    <updated>2013-12-02T08:39:00-07:00</updated>
+    <id>http://instructure.github.io/blog/2013/12/02/hello-world</id>
+    <content type="html"><![CDATA[<p>Welcome to our new blog! Instructure is a technology company. And we have some pretty killer technologists who have opinions. This blog is an outlet for them to talk about stuff.</p>
+
+<p>Feel free to join in the discussion. If you disagree, don&rsquo;t be a wimp—speak up.</p>
+
+<p>Look forward to talking more!</p>
+
+<p>Joel
+CTO</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,334 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Android and iOS 2.0 Mobile App API Documentation - Instructure Tech Blog</title>
+  <meta name="author" content="Instructure Engineering">
+
+  
+  <meta name="description" content="Android and iOS 2.0 Mobile App API Documentation Oct 10th, 2013 General Notes In general, the Canvas mobile app APIs follow the same pattern as the &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://instructure.github.io/mobile-app-api">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Instructure Tech Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<script src="/javascripts/moment.min.js"></script>
+<script src="/javascripts/jquery.bxslider.min.js"></script>
+<link href="/stylesheets/jquery.bxslider.css" rel="stylesheet" />
+  
+
+</head>
+
+<body   class="no-sidebar"  >
+  
+  
+  <header role="banner">
+    <!-- <div class="fat-people"></div>
+    <div class="tiny-heads"></div> -->
+    
+    <hgroup>
+  
+    <h1><a href="">Canvas Dev & Friends</a></h1>
+    
+      <h2>Resources for API development, LTI development and open source development.</h2>
+    
+  
+</hgroup>
+
+
+  </header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:instructure.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog">Blog</a></li>
+  <li><a href="https://canvas.instructure.com/courses/785215">Learn</a></li>
+  <li><a href="https://canvas.instructure.com/doc/api/index.html">API Docs</a></li>
+  <li><a href="http://www.instructure.com/partners">Partners</a></li>
+  <li><a href="http://www.edu-apps.org">Apps</a></li>
+  <li><a href="https://groups.google.com/forum/?fromgroups#!forum/canvas-lms-users">Mailing List</a></li>
+  <li><a href="http://webchat.freenode.net/?channels=canvas-lms&uio=d4">IRC</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article role="article">
+  
+  <header>
+    <h1 class="entry-title">Android and iOS 2.0 Mobile App API Documentation</h1>
+    <p class="meta">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-10T09:09:00-06:00" pubdate data-updated="true">Oct 10<span>th</span>, 2013</time></p>
+  </header>
+  
+  <h2>General Notes</h2>
+
+<p>In general, the Canvas mobile app APIs follow the same pattern as the online content in Canvas. Often, simply replacing the <code>http://</code> with <code>canvas-courses://</code> will take you to the relevant content inside the mobile apps.</p>
+
+<p>If the user is not currently signed into their mobile app, they&rsquo;ll be redirected to a login page for the given domain.</p>
+
+<p><strong><i class="canvas-icon-android"></i> Android only:</strong> If the user is already signed into a different domain than the one specified, they&rsquo;ll be redirected to the activity stream and they&rsquo;ll receive a message letting them know they&rsquo;re already signed into a different domain.</p>
+
+<p><strong><i class="canvas-icon-apple"></i> iOS only:</strong> If the user is already signed into a different domain than the one specified, an attempt will be made to load the content. If the user has the same email address registered with multiple school accounts, we can often still load the content correctly.</p>
+
+<p>Each API endpoint has an icon showing platform compatability. Android: <i class="canvas-icon-android"></i> and iOS: <i class="canvas-icon-apple"></i>.</p>
+
+<p><em>Note: Currently the SpeedGrader app does not support an API.</em></p>
+
+<h3>Login</h3>
+
+<p>Log the user into the given domain, if not already logged in. <i class="canvas-icon-android"></i> <i class="canvas-icon-apple"></i></p>
+
+<pre><code>canvas-courses://example.instructure.com
+</code></pre>
+
+<h3>Announcements</h3>
+
+<p>Open the app to a list of announcements for a course: <i class="canvas-icon-android"></i></p>
+
+<pre><code>canvas-courses://example.instructure.com/courses/:courseID/announcements/
+</code></pre>
+
+<p>Open the app to a specific announcement: <i class="canvas-icon-android"></i> <i class="canvas-icon-apple"></i></p>
+
+<pre><code>canvas-courses://example.instructure.com/courses/:courseID/announcements/:announcementID
+</code></pre>
+
+<h3>Assignments</h3>
+
+<p>Open the app to a specific assignment <i class="canvas-icon-android"></i> <i class="canvas-icon-apple"></i></p>
+
+<pre><code>canvas-courses://example.instructure.com/courses/:courseID/assignments/:assignmentID"
+</code></pre>
+
+<h3>Conversations</h3>
+
+<p>Open the app to the Conversation inbox page page. <i class="canvas-icon-android"></i></p>
+
+<pre><code>canvas-courses://example.instructure.com/conversations/
+</code></pre>
+
+<p>Open the app to a specific conversation <i class="canvas-icon-android"></i></p>
+
+<pre><code>canvas-courses://example.instructure.com/conversations/CONVERSATION_ID
+</code></pre>
+
+<h3>Courses</h3>
+
+<p>Open the app to the list of the user&rsquo;s courses: <i class="canvas-icon-android"></i></p>
+
+<pre><code>canvas-courses://example.instructure.com/courses/
+</code></pre>
+
+<p>Open the app to a specific course home page: <i class="canvas-icon-android"></i></p>
+
+<pre><code>canvas-courses://example.instructure.com/courses/:courseID/
+</code></pre>
+
+<h3>Discussions</h3>
+
+<p>Open the app to a list of discussions for a course: <i class="canvas-icon-android"></i></p>
+
+<pre><code>canvas-courses://example.instructure.com/courses/:courseID/discussion_topics/
+</code></pre>
+
+<p>Open the app to a specific discussion topic <i class="canvas-icon-android"></i> <i class="canvas-icon-apple"></i></p>
+
+<pre><code>canvas-courses://example.instructure.com/courses/:courseID/discussion_topics/:topicID
+canvas-courses://example.instructure.com/groups/:groupID/discussion_topics/:topicID
+</code></pre>
+
+<h3>Files</h3>
+
+<p>Open the app to a specific file <i class="canvas-icon-android"></i> <i class="canvas-icon-apple"></i></p>
+
+<pre><code>canvas-courses://example.instructure.com/files/:fileID
+</code></pre>
+
+<h3>Grades</h3>
+
+<p>Open the app to the course grades page: <i class="canvas-icon-android"></i></p>
+
+<pre><code>canvas-courses://example.instructure.com/courses/:courseID/grades/
+</code></pre>
+
+<h3>Pages</h3>
+
+<p>Open the app to the list of wiki pages: <i class="canvas-icon-android"></i></p>
+
+<pre><code>canvas-courses://example.instructure.com/courses/:courseID/wiki/
+canvas-courses://example.instructure.com/courses/:courseID/pages/
+</code></pre>
+
+<p>Open the app to a specific wiki page: <i class="canvas-icon-android"></i> <i class="canvas-icon-apple"></i></p>
+
+<pre><code>canvas-courses://example.instructure.com/courses/:courseID/pages/:pageName
+canvas-courses://example.instructure.com/courses/:courseID/wiki/:pageName
+canvas-courses://example.instructure.com/groups/:groupID/pages/:pageName
+canvas-courses://example.instructure.com/groups/:groupID/wiki/:pageName
+</code></pre>
+
+<h3>People</h3>
+
+<p>Open the app to the list of people in a course: <i class="canvas-icon-android"></i></p>
+
+<pre><code>canvas-courses://example.instructure.com/courses/:courseID/people/
+canvas-courses://example.instructure.com/courses/:courseID/users/
+</code></pre>
+
+<h3>Quizzes</h3>
+
+<p>Open a specific quiz. <i class="canvas-icon-android"></i> <i class="canvas-icon-apple"></i></p>
+
+<pre><code>canvas-courses://example.instructure.com/courses/:courseID/quizzes/:quizID
+</code></pre>
+
+<p><div style="font-size: 12px; margin-top: 35px; border-top: 1px solid #d0d0d0;">
+  Last Updated: 28 Jun 2013.
+  <a href="https://github.com/instructure/instructure.github.com">Code</a> licensed under the MIT License. Documentation licensed under CC BY 3.0.
+</small></p>
+
+  
+    <footer>
+      <p class="meta">
+        
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-10T09:09:00-06:00" pubdate data-updated="true">Oct 10<span>th</span>, 2013</time>
+        
+      </p>
+      
+        <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://instructure.github.io/mobile-app-api/index.html" data-via="" data-counturl="http://instructure.github.io/mobile-app-api/index.html" >Tweet</a>
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+      
+    </footer>
+  
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Instructure Engineering -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+
+<script>
+ 	$('body').addClass('active');
+</script>
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'canvasdevandfriends';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://instructure.github.io/mobile-app-api/index.html';
+        var disqus_url = 'http://instructure.github.io/mobile-app-api/index.html';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
