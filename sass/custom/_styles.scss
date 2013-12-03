@@ -6,37 +6,38 @@ html{
   background-color: #f8f9fa;
   padding: 0 2em 2em;
 }
-.fat-people{
-  background: url(../images/fat-people.png) no-repeat center center;
-  height: 100px;
-  width: 100px;
-  position: absolute;
-  top: 75px;
-  left: 0px;
-  display: block;
-  border: none;
-  z-index: 100;
-  border: 1px solid transparent;
-  -webkit-transition: all 1s ease-in-out;
-    -moz-transition: all 1s ease-in-out;
-    -o-transition: all 1s ease-in-out;
-    transition: all 1s ease-in-out;
-}
-.tiny-heads{
-  background: url(../images/skinny-heads.png) no-repeat center center;
-  height: 80px;
-  width: 80px;
-  position: absolute;
-  top: 85px;
-  left: 10px;
-  display: block;
-  border: none;
-  z-index: 0;
-  -webkit-transition: all 1.5s ease-in-out;
-    -moz-transition: all 1.5s ease-in-out;
-    -o-transition: all 1.5s ease-in-out;
-    transition: all 1.5s ease-in-out;
-}
+// DEATH OF THE SPINNING LOGO
+// .fat-people{
+//   background: url(../images/fat-people.png) no-repeat center center;
+//   height: 100px;
+//   width: 100px;
+//   position: absolute;
+//   top: 75px;
+//   left: 0px;
+//   display: block;
+//   border: none;
+//   z-index: 100;
+//   border: 1px solid transparent;
+//   -webkit-transition: all 1s ease-in-out;
+//     -moz-transition: all 1s ease-in-out;
+//     -o-transition: all 1s ease-in-out;
+//     transition: all 1s ease-in-out;
+// }
+// .tiny-heads{
+//   background: url(../images/skinny-heads.png) no-repeat center center;
+//   height: 80px;
+//   width: 80px;
+//   position: absolute;
+//   top: 85px;
+//   left: 10px;
+//   display: block;
+//   border: none;
+//   z-index: 0;
+//   -webkit-transition: all 1.5s ease-in-out;
+//     -moz-transition: all 1.5s ease-in-out;
+//     -o-transition: all 1.5s ease-in-out;
+//     transition: all 1.5s ease-in-out;
+// }
 body{
   position: static;
   color: #5d5d5d;
@@ -84,9 +85,10 @@ body>header{
   padding-top: 6%;
   position: relative;
 }
-body>header hgroup{
-  margin-left: 120px;
-}
+// DEATH OF THE SPINNING LOGO
+// body>header hgroup{
+//   margin-left: 120px;
+// }
 body>header hgroup h2{
   font-size: 1em !important;
 }
@@ -111,7 +113,10 @@ article h1{
   padding: 0 .2em .2em;
 }
 aside.sidebar{
-	max-width: 220px;
+  max-width: 220px;
+}
+aside.sidebar{
+  max-width: 220px;
 }
 aside.sidebar, body>div{
   background: #f6f6f6;
@@ -160,20 +165,21 @@ footer[role="contentinfo"]{
 }
 
 // ANIMATIONATIOR
-.fat-people:hover{
-  -moz-transform: rotate(360deg);
-  -webkit-transform: rotate(360deg);
-  -o-transform: rotate(360deg);
-  -ms-transform: rotate(360deg);
-  transform: rotate(360deg);
-}
-.fat-people:hover + .tiny-heads{
-  -moz-transform: rotate(-360deg);
-  -webkit-transform: rotate(-360deg);
-  -o-transform: rotate(-360deg);
-  -ms-transform: rotate(-360deg);
-  transform: rotate(-360deg);
-}
+// DEATH OF THE SPINNING LOGO
+// .fat-people:hover{
+//   -moz-transform: rotate(360deg);
+//   -webkit-transform: rotate(360deg);
+//   -o-transform: rotate(360deg);
+//   -ms-transform: rotate(360deg);
+//   transform: rotate(360deg);
+// }
+// .fat-people:hover + .tiny-heads{
+//   -moz-transform: rotate(-360deg);
+//   -webkit-transform: rotate(-360deg);
+//   -o-transform: rotate(-360deg);
+//   -ms-transform: rotate(-360deg);
+//   transform: rotate(-360deg);
+// }
 
 // SLIDERNATOR
 .bx-wrapper {
@@ -199,48 +205,77 @@ footer[role="contentinfo"]{
   bottom: -35px !important;
 }
 
-// QUERIES
+// queries
 @media only screen and (max-width: 992px){
-	body>header, body>nav, body>footer, body #content>article, body #content>div>article, body #content>div>section {
-	padding-left: 40px;
-	padding-right: 40px;
-	}
-  body>header hgroup{
-    margin-left: 80px;
-  }
-  .fat-people{
-    top: 60px;
-  }
-  .tiny-heads{
-    top: 70px;
+  body>header, body>nav, body>footer, body #content>article, body #content>div>article, body #content>div>section {
+  padding-left: 40px;
+  padding-right: 40px;
   }
 }
 
+// QUERIES
+@media only screen and (max-width: 992px){
+  body>header, body>nav, body>footer, body #content>article, body #content>div>article, body #content>div>section {
+  padding-left: 40px;
+  padding-right: 40px;
+  }
+  // DEATH OF THE SPINNING LOGO
+  // body>header hgroup{
+  //   margin-left: 80px;
+  // }
+  // .fat-people{
+  //   top: 60px;
+  // }
+  // .tiny-heads{
+  //   top: 70px;
+  // }
+}
+
 @media only screen and (max-width: 767px){
-	#content{
-		margin-right: 0;
-	}
-	aside.sidebar {
-		max-width: 100%;
-	}
-	body>header{
-		padding: 10% 0% 3%;
-	}
-    body>header hgroup{
-    margin-left: 0;
+  #content{
+    margin-right: 0;
   }
-  .fat-people{
-    display: none;
+  aside.sidebar {
+    max-width: 100%;
   }
-  .tiny-heads{
-    display: none;
+  body>header{
+    padding: 10% 0% 3%;
+  }
+  // DEATH OF THE SPINNING LOGO
+  // body>header hgroup{
+  //   margin-left: 0;
+  // }
+  // .fat-people{
+  //   display: none;
+  // }
+  // .tiny-heads{
+  //   display: none;
+  // }
+}
+@media only screen and (max-width: 549px){
+  body>header{
+    padding: 60px 5px 10px;
+  }
+  body>header h1{
+    font-size: 2.3em;
+  }
+}
+@media only screen and (max-width: 767px){
+  #content{
+    margin-right: 0;
+  }
+  aside.sidebar {
+    max-width: 100%;
+  }
+  body>header{
+    padding: 10% 0% 3%;
   }
 }
 @media only screen and (max-width: 549px){
-	body>header{
-		padding: 60px 5px 10px;
-	}
-	body>header h1{
-		font-size: 2.3em;
-	}
+  body>header{
+    padding: 60px 5px 10px;
+  }
+  body>header h1{
+    font-size: 2.3em;
+  }
 }
