@@ -2,7 +2,7 @@
 #      Main Configs       #
 # ----------------------- #
 
-url: http://techblog.instructure.com
+url: http://instructure.github.io
 home_title: Canvas Dev & Friends
 title: Instructure Tech Blog
 home_subtitle: Resources for API development, LTI development and open source development.
