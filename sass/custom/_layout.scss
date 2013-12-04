@@ -30,6 +30,10 @@ nav[role=navigation] {
   min-width: 860px;
 }
 
+nav .main-navigation {
+  float: right;
+}
+
 .gridd {
   background: white;
   margin: 0 0 $pad 0;
