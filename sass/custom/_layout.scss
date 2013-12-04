@@ -70,6 +70,9 @@ nav[role=navigation] {
 .col-1-4 {
   width: 25%;
 }
+.col-1-6 {
+  width: 16.66%;
+}
 .col-1-8 {
   width: 12.5%;
 }
@@ -92,4 +95,36 @@ nav[role=navigation] {
   background-color: #FCFFC0;
   padding: 20px;
   margin-bottom: 15px;
+}
+
+#sub-navigation {
+  margin-bottom: 20px;
+  border: 0px;
+  &:after {
+    /* Or @extend clearfix */
+    content: "";
+    display: table;
+    clear: both;
+  }
+  ul {
+    margin: -3px;
+    padding: 0;
+    list-style-type: none;
+    text-align: center;
+    li { 
+      display: inline;
+      padding: 3px;
+      a {
+        display: block;
+        text-decoration: none;
+        padding: .2em 1em;
+        color: #333;
+        background-color: #d0d0d0;
+        &:hover {
+          color: #fff;
+          background-color: #369;
+        }
+      }
+    }
+  }
 }
