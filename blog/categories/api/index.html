@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Instructure Tech Blog</title>
+  <title>Category: API - Instructure Tech Blog</title>
   <meta name="author" content="Instructure">
 
   
-  <meta name="description" content="We recently released a new version of our mobile app for Android. Although it was a huge improvement from previous installments in terms of features &hellip;">
+  <meta name="description" content="Category: API">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://instructure.github.io/blog">
+  <link rel="canonical" href="http://instructure.github.ioblog/categories/api">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Instructure Tech Blog" type="application/atom+xml">
@@ -57,7 +57,7 @@
     
     <hgroup>
   
-    <h1><a href="/blog">Instructure Tech Blog</a></h1>
+    <h1><a href="">Instructure Tech Blog</a></h1>
     
       <h2>Torpedoes of nerdy truth from the engineering team at Instructure</h2>
     
@@ -67,11 +67,6 @@
 
   </header>
   <nav role="navigation">
-<ul class="subscription" data-subscription="rss">
-  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-  
-</ul>
-
 
 <form action="http://google.com/search" method="get">
   <fieldset role="search">
@@ -82,159 +77,43 @@
 
 
 
-  <ul class="main-navigation">
-    <li><a href="/">Dev & Friends</a></li>
-  </ul>
-
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article role="article">
   
-  
-  
-    <article>
-      
   <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/12/09/volley-vs-retrofit/">Android Async HTTP Clients: Volley vs Retrofit</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-12-09T13:47:00-07:00" pubdate data-updated="true">Dec 9<span>th</span>, 2013</time>
-        
-         | <a href="/blog/2013/12/09/volley-vs-retrofit/#disqus_thread">Comments</a>
-        
-      </p>
+    <h1 class="entry-title">Category: API</h1>
     
   </header>
+  
+  <div id="blog-archives" class="category">
 
 
-  <div class="entry-content"><p>We recently released a new version of our mobile app for Android. Although it was a huge improvement from previous installments in terms of features, design, and usability, there was one nagging issue in the back of our minds: speed. There are times when the app isn’t as snappy as we’d like it to be. After some profiling, benchmarks, and common sense, we determined that retrieving data from the API (the networking) was the bottleneck.</p>
 
-<h2>The Old Way: AsyncTasks</h2>
+  
+  <h2>2013</h2>
 
-<p>As of the latest version, we use the built-in AsyncTasks to retrieve data from Canvas’ servers. A quick Google search will explain the numerous issues with our approach: no orientation-change support, no ability to cancel network calls, as well as no easy way to make API calls in parallel. With the exception of Froyo and Gingerbread, AsyncTasks (by default) run in a serialized fashion. In a practical sense, this means that only one AsyncTask is running at any given time. Views that require multiple API calls (the DashBoard currently has 7) run extremely slow; sometimes taking multiple seconds to load.</p>
+<article>
+  
+<h1><a href="/blog/2013/12/09/volley-vs-retrofit/">Android Async HTTP Clients: Volley vs Retrofit</a></h1>
+<time datetime="2013-12-09T13:47:00-07:00" pubdate><span class='month'>Dec</span> <span class='day'>09</span> <span class='year'>2013</span></time>
+
+<footer>
+  <span class="categories">posted in <a class='category' href='/blog/categories/api/'>API</a>, <a class='category' href='/blog/categories/android/'>android</a>, <a class='category' href='/blog/categories/mobile/'>mobile</a></span>
+</footer>
+
+
+</article>
 
 </div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/12/09/volley-vs-retrofit/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/12/02/crafting-accessible-content/">Crafting Accessible Content</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
 
   
-
-
-<time datetime="2013-12-02T09:52:00-07:00" pubdate data-updated="true">Dec 2<span>nd</span>, 2013</time>
-        
-         | <a href="/blog/2013/12/02/crafting-accessible-content/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>At Instructure, we&rsquo;re moving more and more of our app to the client with technologies like <a href="http://emberjs.com">Ember.js</a>. While it and other JavaScript frameworks have made this transition easier, they&rsquo;ve also introduced new challenges around keeping our content accessible.</p>
-
-<p>The old advice we&rsquo;ve all heard about using semantic markup, headers, and <code>alt</code> attributes on <code>&lt;img /&gt;</code> tags is still true, but it doesn&rsquo;t address how we can best develop accessible content in a rich client application. Despite rumors to the contrary, rich content <em>can</em> be accessible if we pay attention to a few basics.</p>
+</article>
 
 </div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/12/02/crafting-accessible-content/">Read on &rarr;</a>
-    </footer>
-  
 
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/12/02/hello-world/">Hello World!</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-12-02T08:39:00-07:00" pubdate data-updated="true">Dec 2<span>nd</span>, 2013</time>
-        
-         | <a href="/blog/2013/12/02/hello-world/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Welcome to our new blog! Instructure is a technology company. And we have some pretty killer technologists who have opinions. This blog is an outlet for them to talk about stuff.</p>
-
-<p>Feel free to join in the discussion. If you disagree, don&rsquo;t be a wimp—speak up.</p>
-
-<p>Look forward to talking more!</p>
-
-<p>Joel
-CTO</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
-</div>
 <aside class="sidebar">
   
     <section>
@@ -276,6 +155,7 @@ CTO</p>
 
   
 </aside>
+
 
     </div>
   </div>
