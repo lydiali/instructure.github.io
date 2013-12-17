@@ -1,28 +1,129 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Instructure Tech Blog]]></title>
-  <link href="http://instructure.github.io/atom.xml" rel="self"/>
-  <link href="http://instructure.github.io/"/>
-  <updated>2013-12-17T12:32:16-07:00</updated>
-  <id>http://instructure.github.io/</id>
-  <author>
-    <name><![CDATA[Instructure]]></name>
-    
-  </author>
-  <generator uri="http://octopress.org/">Octopress</generator>
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Facebook React vs. Ember - Instructure Tech Blog</title>
+  <meta name="author" content="Instructure">
 
   
-  <entry>
-    <title type="html"><![CDATA[Facebook React vs. Ember]]></title>
-    <link href="http://instructure.github.io/blog/2013/12/17/facebook-react-vs-ember/"/>
-    <updated>2013-12-17T08:54:00-07:00</updated>
-    <id>http://instructure.github.io/blog/2013/12/17/facebook-react-vs-ember</id>
-    <content type="html"><![CDATA[<p>We engineers at Instructure love <a href="http://www.emberjs.com">Ember</a>. We also love to learn about other frameworks and know which tools are the best for the job at hand. One of the newer frameworks to come out is React.</p>
+  <meta name="description" content="We engineers at Instructure love Ember. We also love to learn about other frameworks and know which tools are the best for the job at hand. One of &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://instructure.github.io/blog/2013/12/17/facebook-react-vs-ember">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Instructure Tech Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<script src="/javascripts/moment.min.js"></script>
+<script src="/javascripts/jquery.bxslider.min.js"></script>
+<link href="/stylesheets/jquery.bxslider.css" rel="stylesheet" />
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-9138420-21']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  
+  
+  <header role="banner">
+    <!-- <div class="fat-people"></div>
+    <div class="tiny-heads"></div> -->
+    
+    <hgroup>
+  
+    <h1><a href="/blog">Instructure Tech Blog</a></h1>
+    
+      <h2>Torpedoes of nerdy truth from the engineering team at Instructure</h2>
+    
+  
+</hgroup>
+
+
+  </header>
+  <nav role="navigation">
+<ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+
+
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:instructure.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+
+
+
+  <ul class="main-navigation">
+    <li><a href="/">Dev & Friends</a></li>
+  </ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Facebook React vs. Ember</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-17T08:54:00-07:00" pubdate data-updated="true">Dec 17<span>th</span>, 2013</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>We engineers at Instructure love <a href="http://www.emberjs.com">Ember</a>. We also love to learn about other frameworks and know which tools are the best for the job at hand. One of the newer frameworks to come out is React.</p>
 
 <p><a href="http://facebook.github.io/react/">React</a> is Facebook&rsquo;s new JavaScript library for building user interfaces. I&rsquo;m excited to see another player in the game of front-end JS frameworks. When we have so much mind share going to a similar problem, we all win.</p>
 
-<p>On the home page <a href="http://instructure.github.io/images/posts/react-website.png">(screenshot)</a>, there are a few examples of how React can be used. I thought it might be fun to show how each of these can be done using Ember.</p>
+<p>On the home page <a href="/images/posts/react-website.png">(screenshot)</a>, there are a few examples of how React can be used. I thought it might be fun to show how each of these can be done using Ember.</p>
 
 <!-- more -->
 
@@ -434,215 +535,183 @@
   </p>
 </div>
 
-]]></content>
-  </entry>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
   
-  <entry>
-    <title type="html"><![CDATA[Android Async HTTP Clients: Volley vs Retrofit]]></title>
-    <link href="http://instructure.github.io/blog/2013/12/09/volley-vs-retrofit/"/>
-    <updated>2013-12-09T13:47:00-07:00</updated>
-    <id>http://instructure.github.io/blog/2013/12/09/volley-vs-retrofit</id>
-    <content type="html"><![CDATA[<p>We recently released a new version of our mobile app for Android. Although it was a huge improvement from previous installments in terms of features, design, and usability, there was one nagging issue in the back of our minds: speed. There are times when the app isn’t as snappy as we’d like it to be. After some profiling, benchmarks, and common sense, we determined that retrieving data from the API (the networking) was the bottleneck.</p>
 
-<h2>The Old Way: AsyncTasks</h2>
+<span class="byline author vcard">Posted by <span class="fn">Eric Berry</span></span>
 
-<p>As of the latest version, we use the built-in AsyncTasks to retrieve data from Canvas’ servers. A quick Google search will explain the numerous issues with our approach: no orientation-change support, no ability to cancel network calls, as well as no easy way to make API calls in parallel. With the exception of Froyo and Gingerbread, AsyncTasks (by default) run in a serialized fashion. In a practical sense, this means that only one AsyncTask is running at any given time. Views that require multiple API calls (the DashBoard currently has 7) run extremely slow; sometimes taking multiple seconds to load.</p>
-
-<!-- more -->
+      
 
 
-<h2>Introducing Volley and Retrofit</h2>
-
-<p>Luckily, there are a few third party libraries that provide support for concurrent background threads, network caching, as well as other features that clean up networking code substantially. The first library that we looked into was <a href="https://android.googlesource.com/platform/frameworks/volley/">Volley</a>, an open-source library written by Google. It’s currently used in AOSP Android as well as most of Google’s first-party applications. The other library we looked into was <a href="http://square.github.io/retrofit/">RetroFit</a>, another open-source library written by Square.</p>
-
-<h2>How We Decided</h2>
-
-<p>The decision to switch the architecture of our networking code was not an easy one to make. The interface with the Canvas API is a substantial part of our application. At the time of writing this blog post, the Canvas for Android project has about 43,000 lines of actual code. Around 3,500 lines of that code are dedicated to interfacing with the Canvas API (setting up API endpoints, etc). JSON parsing comprises of another 7,300 lines of code. That means that more than 25% of our code is dedicated to retrieving/saving data from the Canvas API. That’s just making the API calls and parsing the results. That doesn’t include any AsyncTask code or caching, which we feel should be categorized as networking code as well.</p>
-
-<p>As you can see, if we were going to switch out our networking code, it would have to be for <em>compelling</em> reasons as it’d be a huge refactor. In order to decide if it was worth it, we did a lot of reading about both Volley and Retrofit. We looked at forums, blogposts, example code; we read as much as we could. We learned a lot, but we will try to summarize it the best we can.</p>
-
-<p>From outwards appearances, they are quite similar in usage. They both allow you to provide a “callback”, which is an interface with two methods that you must override: success and failure. One of the methods will be called on the main thread at the completion of the asynchronous network call. The big difference is in how you specify the API endpoint and what you actually get back.</p>
-
-<p>With Volley, you specify the <strong>entire</strong> endpoint dynamically (parameters and all) at the time of making the API call. By default, Volley returns a JSONObject or a JSONArray depending on the type of request.</p>
-
-<p>Retrofit, on the other hand, has you set the base endpoint url for all API calls, then it has you build static interfaces that specify endpoints using Java <em>annotations</em>. You can cleanly and dynamically substitute path-segments, POST/GET variables, etc. into the endpoint at the time of making the API call.  In order to make an API call with RetroFit, you call a method on the interface, pass in any substitutions, and it will return to you a java model object. By default, Retrofit does the JSON parsing automatically using GSON (which is really, really fast) although you can plug in your own JSON parser if you want.  Even though the setup is slightly different, the actual API calls are done in a similar way.</p>
-
-<p>In order to get some performance benchmarks, We wrote a sample application where we could control/simulate real-world API calls that Canvas for Android actually makes. It would also give me a little bit of experience actually using the libraries. To start off with, we wrote a very basic app that allowed me to toggle between an easy API with little JSON parsing and a complex API with a long response. The total number of API calls to make could be changed in the app as well. We also included the exact suite of API calls that the Canvas for Android Dashboard makes for a more real-world test. This benchmark showed me three things: 1) they were both significantly easier to use than AsyncTasks, 2) they both cleaned up the codebase, and 3) they were both a lot faster than what we were currently doing. Obviously the benchmarks fluctuated based upon network conditions; however, they consistently outperformed the way we are currently doing our networking.</p>
-
-<p> <img src="http://i.imgur.com/tIdZkl3.png" alt="" /></p>
-
-<p>In all three tests with varying repeats (1 &ndash; 25 times), Volley was anywhere from 50% to 75% faster. Retrofit clocked in at an impressive 50% to 90% faster than the AsyncTasks, hitting the same endpoint the same number of times. On the <em>Dashboard test suite</em>, this translated into loading/parsing the data several seconds faster. That is a massive real-world difference. In order to make the tests fair, the times for AsyncTasks/Volley included the JSON parsing as Retrofit does it for you automatically.</p>
-
-<p>At this point, we wanted to switch our networking library for performance reasons, but our decision had to take other criteria into consideration. If we were going to spend time refactoring a quarter of our code base, we would have to be a little bit picky. Some of the things we took into account were speed, ease of integration, code cleanup, scalability, and time required to write new API calls.</p>
-
-<h2>RetroFit Wins</h2>
-
-<p>In the end, we decided to go with Retrofit for our application. Not only is it ridiculously fast, but it meshes quite well with our existing architecture. We were able to make a parent <em>Callback Interface</em> that automatically handles the error function, caching, and pagination with little to no effort for our APIs. In order to merge in Retrofit, we have to rename our variables to make our models GSON compliant, write a few simple interfaces, delete functions from the old API, and modify our fragments to not use AsyncTasks. Now that we have a few fragments completely converted, it’s pretty painless. There were some growing pains and issues that we had to overcome, but overall it went smoothly. In the beginning, we ran into a few technical issues/bugs, but Square has a fantastic <a href="https://plus.google.com/communities/109244258569782858265">Google+ community</a> that was able to help us through it. We have successfully converted our entire app to Retrofit. A build that&rsquo;s running solely retrofit can be expected in the Play Store in the coming weeks.</p>
-
-<p>Feel free to ask questions in the comments if you have any.</p>
-
-<h2>Resources:</h2>
-
-<h4>Retrofit:</h4>
-
-<ul>
-<li><a href="https://github.com/square/retrofit">Source and Samples</a> (Source and samples)</li>
-<li><a href="http://square.github.io/retrofit/">Square Homepage</a></li>
-<li><a href="https://plus.google.com/u/0/communities/109244258569782858265">Square Google+ Community</a></li>
-</ul>
 
 
-<h4>Volley:</h4>
 
-<ul>
-<li><a href="https://android.googlesource.com/platform/frameworks/volley/">Source</a></li>
-<li><a href="https://developers.google.com/live/shows/474338138">Demonstration</a></li>
-<li><a href="https://github.com/ogrebgr/android_volley_examples">Github of Examples</a></li>
-<li><a href="http://www.technotalkative.com/android-volley-library-example">Usage Example</a></li>
-</ul>
 
-]]></content>
-  </entry>
+
+
   
-  <entry>
-    <title type="html"><![CDATA[Crafting accessible content]]></title>
-    <link href="http://instructure.github.io/blog/2013/12/02/crafting-accessible-content/"/>
-    <updated>2013-12-02T09:52:00-07:00</updated>
-    <id>http://instructure.github.io/blog/2013/12/02/crafting-accessible-content</id>
-    <content type="html"><![CDATA[<p>At Instructure, we&rsquo;re moving more and more of our app to the client with technologies like <a href="http://emberjs.com">Ember.js</a>. While it and other JavaScript frameworks have made this transition easier, they&rsquo;ve also introduced new challenges around keeping our content accessible.</p>
-
-<p>The old advice we&rsquo;ve all heard about using semantic markup, headers, and <code>alt</code> attributes on <code>&lt;img /&gt;</code> tags is still true, but it doesn&rsquo;t address how we can best develop accessible content in a rich client application. Despite rumors to the contrary, rich content <em>can</em> be accessible if we pay attention to a few basics.</p>
-
-<!--more-->
 
 
-<h2>Getting started with accessibility</h2>
+<time datetime="2013-12-17T08:54:00-07:00" pubdate data-updated="true">Dec 17<span>th</span>, 2013</time>
+      
 
-<blockquote><p>The Web is fundamentally designed to work for all people, whatever their hardware, software, language, culture, location, or physical or mental ability. When the Web meets this goal, it is accessible to people with a diverse range of hearing, movement, sight, and cognitive ability.</p><footer><strong>W3</strong> <cite><a href='http://www.w3.org/standards/webdesign/accessibility'>www.w3.org/standards/webdesign/&hellip;</a></cite></footer></blockquote>
-
-
-<p>Let&rsquo;s start with a few definitions:</p>
-
-<ul>
-<li><strong>Accessibility</strong>: Web content is accessible when it usable by persons with disabilities. While this includes users of screen readers, it also includes persons with cognitive and other disabilities.</li>
-<li><strong>WAI-ARIA</strong>: A suite of technologies designed to make rich Internet applications accessible to users with disabilities.</li>
-</ul>
-
-
-<p>Authoring accessible rich content most often means (1) using WAI-ARIA attributes such as <code>role</code> and <code>aria-expanded</code> to mark-up content in a machine-parseable way; (2) ensuring that all content is keyboard navigable; and (3) managing page focus.</p>
-
-<p>So what does all of this mean when you&rsquo;re developing widgets? Let&rsquo;s take a look at an example of a button set component.</p>
-
-<h2>Building a button set</h2>
-
-<p>We&rsquo;re going to build an accessible <a href="http://getbootstrap.com/components/#btn-groups">button set</a> using Twitter&rsquo;s Bootstrap styles and jQuery.</p>
-
-<p>Our button set is going to work like a filter, so users can only select one button at a time. This means it&rsquo;s like a radio button. Watch how we can use aria roles and attributes to convey that behavior to non-sighted users:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;btn-group&quot;</span> <span class="na">role=</span><span class="s">&quot;radiogroup&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">&quot;button&quot;</span>
-</span><span class='line'>          <span class="na">class=</span><span class="s">&quot;btn btn-default active&quot;</span>
-</span><span class='line'>          <span class="na">role=</span><span class="s">&quot;radio&quot;</span>
-</span><span class='line'>          <span class="na">aria-checked=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>Open<span class="nt">&lt;/button&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">&quot;button&quot;</span>
-</span><span class='line'>          <span class="na">class=</span><span class="s">&quot;btn btn-default&quot;</span>
-</span><span class='line'>          <span class="na">role=</span><span class="s">&quot;radio&quot;</span>
-</span><span class='line'>          <span class="na">aria-checked=</span><span class="s">&quot;false&quot;</span><span class="nt">&gt;</span>Closed<span class="nt">&lt;/button&gt;</span>
-</span><span class='line'><span class="nt">&lt;/div&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>First, notice that we didn&rsquo;t change Twitter&rsquo;s recommended button set markup &mdash; we only augmented it with the <code>role</code> attributes and an <code>aria-checked</code> attribute. The <code>role</code> attribute describes the component&rsquo;s behavior to screen readers, and <code>aria-checked</code> attribute notifies users of the current option in the same way that the <code>active</code> class does for sighted users.</p>
-
-<p>Here&rsquo;s the JavaScript to make this happen:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="nx">$</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">buttonset</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>    <span class="kd">var</span> <span class="nx">$target</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="nx">$target</span><span class="p">.</span><span class="nx">siblings</span><span class="p">()</span>
-</span><span class='line'>      <span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="s1">&#39;active&#39;</span><span class="p">)</span>
-</span><span class='line'>      <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;aria-checked&#39;</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="nx">$target</span>
-</span><span class='line'>      <span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">&#39;active&#39;</span><span class="p">)</span>
-</span><span class='line'>      <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;aria-checked&#39;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
-</span><span class='line'>  <span class="p">});</span>
-</span><span class='line'><span class="p">};</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">// usage</span>
-</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.btn-group .btn&#39;</span><span class="p">).</span><span class="nx">buttonset</span><span class="p">();</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>While we&rsquo;re defining this as a jQuery plugin, we could have just as easily made an Ember component, an Angular directive, or a Backbone view.</p>
-
-<p>We&rsquo;ve found that this level is often the best place for dealing with accessibility. By handling accessibility details in our reusable widgets and libraries we can code it once and benefit across our stack. New engineers can immediately start writing accessible code, and all engineers benefit from quick, accessible implementations of common patterns.</p>
-
-<p>In this case, our code is almost all standard jQuery. This solution doesn&rsquo;t require us to manage focus or worry about keyboard navigation because buttons are already in the tab order, but often widget markup will need a <code>tabindex=-1</code> attribute and calls like <code>$('.item').focus()</code> to ensure that screen reader users aren&rsquo;t lost on the page.</p>
-
-<p>Here&rsquo;s our component in action (it&rsquo;s easier to test with a screen reader if you pop out this example into its own page first):</p>
-
-<p><a class="jsbin-embed" href="http://jsbin.com/OBoqALa/1/embed?output">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script></p>
-
-<h2>Testing accessibility</h2>
-
-<p>If you&rsquo;re on a Mac, you already have the software you need to get started testing for accessibility. OSX ships with a screen reader, VoiceOver, that can be enabled in your System Preferences and activated by pressing Cmd-F5.</p>
-
-<p>If you&rsquo;re on Windows, take a look at the free <a href="http://www.nvaccess.org/">NVDA</a> or, if you&rsquo;re doing professional development, the more widely used <a href="http://www.freedomscientific.com/products/fs/jaws-product-page.asp">JAWS</a>.</p>
-
-<p>To ensure that everything we write is accessible, we test all new commits in VoiceOver and JAWS as well as in our supported browsers before merging to master. And while giving accessibility top priority alongside visual fidelity and layout initially slowed us down, we&rsquo;ve long since adjusted and now have  better code and a better product.</p>
-
-<h2>Wrapping up</h2>
-
-<p>Developing with accessibility in mind has been a great experience at Instructure. By starting with an eye to accessibility we&rsquo;ve been able to leverage WAI-ARIA tools to create rich, accessible content in an unobtrusive way.</p>
-
-<h3>Additional resources</h3>
-
-<p>To learn more about accessibility, take a look at the W3&rsquo;s <a href="http://www.w3.org/TR/wai-aria-practices">Authoring Practices</a> document. It covers additional topics like keyboard shortcuts, managing focus, and properly labeling content. The Illinois Center of Information Technology and Web Accessibility also have a great <a href="http://test.cita.uiuc.edu/aria/">collection of accessibility examples</a>.</p>
-]]></content>
-  </entry>
+<span class="categories">
   
-  <entry>
-    <title type="html"><![CDATA[Hello World!]]></title>
-    <link href="http://instructure.github.io/blog/2013/12/02/hello-world/"/>
-    <updated>2013-12-02T08:39:00-07:00</updated>
-    <id>http://instructure.github.io/blog/2013/12/02/hello-world</id>
-    <content type="html"><![CDATA[<p>Welcome to our new blog! Instructure is a technology company. And we have some pretty killer technologists who have opinions. This blog is an outlet for them to talk about stuff.</p>
-
-<p>Feel free to join in the discussion. If you disagree, don&rsquo;t be a wimp—speak up.</p>
-
-<p>Look forward to talking more!</p>
-
-<p>Joel
-CTO</p>
-]]></content>
-  </entry>
+    <a class='category' href='/blog/categories/emberjs/'>EmberJS</a>, <a class='category' href='/blog/categories/javascript/'>JavaScript</a>
   
-</feed>
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://instructure.github.io/blog/2013/12/17/facebook-react-vs-ember/" data-via="" data-counturl="http://instructure.github.io/blog/2013/12/17/facebook-react-vs-ember/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/12/09/volley-vs-retrofit/" title="Previous Post: Android Async HTTP Clients: Volley vs Retrofit">&laquo; Android Async HTTP Clients: Volley vs Retrofit</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Related Links</h1>
+  <ul id="recent_posts">
+    <li class="post">
+      <a href="http://www.instructure.com/">Canvas by Instructure</a>
+    </li>
+      <li class="post">
+      <a href="http://learning.instructure.com/">Keep Learning Blog</a>
+    </li>
+    <li class="post">
+      <a href="http://voice.instructure.com/blog/">Instructure Blog</a>
+    </li>
+  </ul>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/12/17/facebook-react-vs-ember/">Facebook React vs. Ember</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/09/volley-vs-retrofit/">Android Async HTTP Clients: Volley vs Retrofit</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/02/crafting-accessible-content/">Crafting Accessible Content</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/12/02/hello-world/">Hello World!</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Instructure -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+
+<script>
+ 	$('body').addClass('active');
+</script>
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'canvasdevandfriends';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://instructure.github.io/blog/2013/12/17/facebook-react-vs-ember/';
+        var disqus_url = 'http://instructure.github.io/blog/2013/12/17/facebook-react-vs-ember/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
