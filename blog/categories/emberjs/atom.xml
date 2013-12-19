@@ -4,7 +4,7 @@
   <title><![CDATA[Category: EmberJS | Instructure Tech Blog]]></title>
   <link href="http://instructure.github.io/blog/categories/emberjs/atom.xml" rel="self"/>
   <link href="http://instructure.github.io/"/>
-  <updated>2013-12-17T12:32:16-07:00</updated>
+  <updated>2013-12-19T14:51:50-07:00</updated>
   <id>http://instructure.github.io/</id>
   <author>
     <name><![CDATA[Instructure]]></name>
@@ -52,7 +52,8 @@ var HelloMessage = React.createClass({
 <p>
 ```js Ember
 Ember.Handlebars.helper(&lsquo;hello-message&rsquo;, function(name) {
-  return new Handlebars.SafeString(&lsquo;<div>Hello &rsquo; + name + &lsquo;</div>&rsquo;);
+  var escaped = Handlebars.Utils.escapeExpression(name);
+  return new Handlebars.SafeString(&lsquo;<div>Hello &rsquo; + escaped + &lsquo;</div>&rsquo;);
 });</p>
 
 <p>{{{hello-message &ldquo;John&rdquo;}}}
@@ -61,7 +62,7 @@ Ember.Handlebars.helper(&lsquo;hello-message&rsquo;, function(name) {
 
 <h3>Example:</h3>
 
-<p><a class="jsbin-embed" href="http://jsbin.com/ecAJuxE/3/embed?html,js,output">Facebook React vs Ember</a><script src="http://static.jsbin.com/js/embed.js"></script></p>
+<p><a class="jsbin-embed" href="http://jsbin.com/ecAJuxE/4/edit?html,js,output">Facebook React vs Ember</a><script src="http://static.jsbin.com/js/embed.js"></script></p>
 
 <h2>A Stateful Component</h2>
 

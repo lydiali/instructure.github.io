@@ -4,7 +4,7 @@
   <title><![CDATA[Instructure Tech Blog]]></title>
   <link href="http://instructure.github.io/atom.xml" rel="self"/>
   <link href="http://instructure.github.io/"/>
-  <updated>2013-12-17T12:32:16-07:00</updated>
+  <updated>2013-12-19T14:51:50-07:00</updated>
   <id>http://instructure.github.io/</id>
   <author>
     <name><![CDATA[Instructure]]></name>
@@ -57,8 +57,10 @@
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
+<span class='line-number'>6</span>
 </pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">Ember</span><span class="p">.</span><span class="nx">Handlebars</span><span class="p">.</span><span class="nx">helper</span><span class="p">(</span><span class="s1">&#39;hello-message&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>  <span class="k">return</span> <span class="k">new</span> <span class="nx">Handlebars</span><span class="p">.</span><span class="nx">SafeString</span><span class="p">(</span><span class="s1">&#39;&lt;div&gt;Hello &#39;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39;&lt;/div&gt;&#39;</span><span class="p">);</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">escaped</span> <span class="o">=</span> <span class="nx">Handlebars</span><span class="p">.</span><span class="nx">Utils</span><span class="p">.</span><span class="nx">escapeExpression</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
+</span><span class='line'>  <span class="k">return</span> <span class="k">new</span> <span class="nx">Handlebars</span><span class="p">.</span><span class="nx">SafeString</span><span class="p">(</span><span class="s1">&#39;&lt;div&gt;Hello &#39;</span> <span class="o">+</span> <span class="nx">escaped</span> <span class="o">+</span> <span class="s1">&#39;&lt;/div&gt;&#39;</span><span class="p">);</span>
 </span><span class='line'><span class="p">});</span>
 </span><span class='line'>
 </span><span class='line'><span class="p">{{{</span><span class="nx">hello</span><span class="o">-</span><span class="nx">message</span> <span class="s2">&quot;John&quot;</span><span class="p">}}}</span>
@@ -67,7 +69,7 @@
 
 <h3>Example:</h3>
 
-<p><a class="jsbin-embed" href="http://jsbin.com/ecAJuxE/3/embed?html,js,output">Facebook React vs Ember</a><script src="http://static.jsbin.com/js/embed.js"></script></p>
+<p><a class="jsbin-embed" href="http://jsbin.com/ecAJuxE/4/edit?html,js,output">Facebook React vs Ember</a><script src="http://static.jsbin.com/js/embed.js"></script></p>
 
 <h2>A Stateful Component</h2>
 
