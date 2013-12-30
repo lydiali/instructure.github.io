@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Instructure Tech Blog</title>
+  <title>Generating Accessible Colors in JavaScript - Instructure Tech Blog</title>
   <meta name="author" content="Instructure">
 
   
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://instructure.github.io/blog">
+  <link rel="canonical" href="http://instructure.github.io/blog/2013/12/30/generating-accessible-colors-in-javascript">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Instructure Tech Blog" type="application/atom+xml">
@@ -89,15 +89,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2013/12/30/generating-accessible-colors-in-javascript/">Generating Accessible Colors in JavaScript</a></h1>
+      <h1 class="entry-title">Generating Accessible Colors in JavaScript</h1>
     
     
       <p class="meta">
@@ -115,83 +112,69 @@
 
 <time datetime="2013-12-30T14:42:00-07:00" pubdate data-updated="true">Dec 30<span>th</span>, 2013</time>
         
-         | <a href="/blog/2013/12/30/generating-accessible-colors-in-javascript/#disqus_thread">Comments</a>
+         | <a href="#disqus_thread">Comments</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>We recently released a major upgrade to Canvas&rsquo;s calendar. Although the primary objective was adding an agenda view and other accessibility tools, we also took the opportunity to update its visual design, including the color coding that links events and calendars. We&rsquo;ve released this new color code generator as a Bower package at <a href="https://github.com/instructure/color-slicer">github/instructure/color-slicer</a>. Here&rsquo;s why we switched.</p>
+<div class="entry-content"><p>We recently released a major upgrade to Canvas&rsquo;s calendar. Although the primary objective was adding an agenda view and other accessibility tools, we also took the opportunity to update its visual design, including the color coding that links events and calendars. We&rsquo;ve released this new color code generator as a Bower package at <a href="https://github.com/instructure/color-slicer">github/instructure/color-slicer</a>. Here&rsquo;s why we switched.</p>
 
+<!--more-->
+
+
+<h2>Objectives</h2>
+
+<p>Our old color coding system was pretty simple: we had a list of ten hues, and we assigned them to calendars in order. The drawbacks were that colors would repeat after ten calendars and that the colors used weren&rsquo;t very appealing.</p>
+
+<p> <img src="http://i.imgur.com/6lBEr3V.png" alt="" /></p>
+
+<p>Another system we considered was <a href="https://github.com/instructure/canvas-lms/blob/stable/app/coffeescripts/util/contextColors.coffee">our hash-based color generator</a>, which creates a color based on an object name or ID. This would avoid repetition, but unlucky users could end up with three slightly different shades of green for their three courses.</p>
+
+<p>For the new system, then, we had three goals:</p>
+
+<ul>
+<li>Produce colors that look nice and are accessibly readable for text.</li>
+<li>Allow an unlimited number of colors without repetition.</li>
+<li>Keep colors visually distinct, especially for short lists.</li>
+</ul>
+
+
+<h2>Text colors</h2>
+
+<p>The simplest way to generate bright colors would be use HSV and to vary the hue while using 100% saturation and value. For text on a white background, though, this makes yellows almost invisible:</p>
+
+<p><a href="http://jsfiddle.net/3KX8d/1/"><img src="http://i.imgur.com/kk4ntIE.png" /></a></p>
+
+<p>Instead, we use the <a href="http://en.wikipedia.org/wiki/Lab_color_space">Lab color space</a>, which adjusts for human sensitivity to green, providing a better measurement of lightness and more evenly distributed hues. This not only looks better, but also helps users with limited vision by meeting <a href="http://webaim.org/resources/contrastchecker/">WCAG AA contrast guidelines</a>.</p>
+
+<p><a href="http://jsfiddle.net/G9Qmm/1/"><img src="http://i.imgur.com/V5jstLt.png?1" /></a></p>
+
+<h2>Spacing</h2>
+
+<p>An easy way to space the colors would be to divide the hue circle by the number of calendars. We didn&rsquo;t want all of the colors to change whenever a user added a course, though; we wanted to use the same colors for the first three calendars whether there were three or thirty total. To accomplish this, we <a href="http://jsfiddle.net/UqSS3/6/">progressively divide each gap in half</a>: first we use 0°, then 180°, then 90°, then 270°, then 45°, and so on. This way, your first few calendars are always very visually distinct.</p>
+
+<p>Formally, this is essentially an <a href="http://en.wikipedia.org/wiki/Online_algorithm">online</a> <a href="http://en.wikipedia.org/wiki/Thomson_problem">Thomson problem</a>. We&rsquo;re lucky to only have to solve the one-dimensional version, but the same basic idea could certainly be used to vary hue and value simultaneously if you wanted to generate many distinct colors and didn&rsquo;t care about legibility. The <a href="http://sitemason.vanderbilt.edu/page/hmbADS">spiral point heuristic</a> would probably work well&mdash;we&rsquo;d love to see someone send us a pull request.</p>
+
+<h2>Results</h2>
+
+<p>We&rsquo;re always refining our user experience, but we&rsquo;re happy with the look of our new colors.</p>
+
+<p> <img src="http://i.imgur.com/GLSrwyh.png?1" alt="" /></p>
+
+<p>We&rsquo;ve released <a href="https://github.com/instructure/color-slicer">color-slicer</a> in UMD format under an MIT license, so it should be easy to add to your projects. I hope you&rsquo;ll find it useful. My favorite part of working at Instructure&mdash;better than weekly lunch&mdash;is spending most of my time crafting code that we give back to the community. Let us know what you think.</p>
 </div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/12/30/generating-accessible-colors-in-javascript/">Read on &rarr;</a>
-    </footer>
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/12/17/facebook-react-vs-ember/">Facebook React vs. Ember</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
   
 
+<span class="byline author vcard">Posted by <span class="fn">Braden Anderson</span></span>
 
-<time datetime="2013-12-17T08:54:00-07:00" pubdate data-updated="true">Dec 17<span>th</span>, 2013</time>
-        
-         | <a href="/blog/2013/12/17/facebook-react-vs-ember/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>We engineers at Instructure love <a href="http://www.emberjs.com">Ember</a>. We also love to learn about other frameworks and know which tools are the best for the job at hand. One of the newer frameworks to come out is React.</p>
-
-<p><a href="http://facebook.github.io/react/">React</a> is Facebook&rsquo;s new JavaScript library for building user interfaces. I&rsquo;m excited to see another player in the game of front-end JS frameworks. When we have so much mind share going to a similar problem, we all win.</p>
-
-<p>On the home page <a href="/images/posts/react-website.png">(screenshot)</a>, there are a few examples of how React can be used. I thought it might be fun to show how each of these can be done using Ember.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/12/17/facebook-react-vs-ember/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/12/09/volley-vs-retrofit/">Android Async HTTP Clients: Volley vs Retrofit</a></h1>
-    
-    
-      <p class="meta">
-        
 
 
 
@@ -203,128 +186,48 @@
   
 
 
-<time datetime="2013-12-09T13:47:00-07:00" pubdate data-updated="true">Dec 9<span>th</span>, 2013</time>
-        
-         | <a href="/blog/2013/12/09/volley-vs-retrofit/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>We recently released a new version of our mobile app for Android. Although it was a huge improvement from previous installments in terms of features, design, and usability, there was one nagging issue in the back of our minds: speed. There are times when the app isn’t as snappy as we’d like it to be. After some profiling, benchmarks, and common sense, we determined that retrieving data from the API (the networking) was the bottleneck.</p>
-
-<h2>The Old Way: AsyncTasks</h2>
-
-<p>As of the latest version, we use the built-in AsyncTasks to retrieve data from Canvas’ servers. A quick Google search will explain the numerous issues with our approach: no orientation-change support, no ability to cancel network calls, as well as no easy way to make API calls in parallel. With the exception of Froyo and Gingerbread, AsyncTasks (by default) run in a serialized fashion. In a practical sense, this means that only one AsyncTask is running at any given time. Views that require multiple API calls (the DashBoard currently has 7) run extremely slow; sometimes taking multiple seconds to load.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/12/09/volley-vs-retrofit/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
+<time datetime="2013-12-30T14:42:00-07:00" pubdate data-updated="true">Dec 30<span>th</span>, 2013</time>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/12/02/crafting-accessible-content/">Crafting Accessible Content</a></h1>
-    
-    
-      <p class="meta">
-        
 
-
-
-
-
-
-
-
+<span class="categories">
   
+    <a class='category' href='/blog/categories/accessibility/'>accessibility</a>, <a class='category' href='/blog/categories/design/'>design</a>, <a class='category' href='/blog/categories/javascript/'>javascript</a>
+  
+</span>
 
 
-<time datetime="2013-12-02T09:52:00-07:00" pubdate data-updated="true">Dec 2<span>nd</span>, 2013</time>
-        
-         | <a href="/blog/2013/12/02/crafting-accessible-content/#disqus_thread">Comments</a>
-        
-      </p>
+    </p>
     
-  </header>
-
-
-  <div class="entry-content"><p>At Instructure, we&rsquo;re moving more and more of our app to the client with technologies like <a href="http://emberjs.com">Ember.js</a>. While it and other JavaScript frameworks have made this transition easier, they&rsquo;ve also introduced new challenges around keeping our content accessible.</p>
-
-<p>The old advice we&rsquo;ve all heard about using semantic markup, headers, and <code>alt</code> attributes on <code>&lt;img /&gt;</code> tags is still true, but it doesn&rsquo;t address how we can best develop accessible content in a rich client application. Despite rumors to the contrary, rich content <em>can</em> be accessible if we pay attention to a few basics.</p>
-
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://instructure.github.io/blog/2013/12/30/generating-accessible-colors-in-javascript/" data-via="" data-counturl="http://instructure.github.io/blog/2013/12/30/generating-accessible-colors-in-javascript/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
 </div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/12/02/crafting-accessible-content/">Read on &rarr;</a>
-    </footer>
-  
 
-
-    </article>
-  
-  
-    <article>
+    
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/12/02/hello-world/">Hello World!</a></h1>
-    
-    
-      <p class="meta">
-        
+        <a class="basic-alignment left" href="/blog/2013/12/17/facebook-react-vs-ember/" title="Previous Post: Facebook React vs. Ember">&laquo; Facebook React vs. Ember</a>
+      
+      
+    </p>
+  </footer>
+</article>
 
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-12-02T08:39:00-07:00" pubdate data-updated="true">Dec 2<span>nd</span>, 2013</time>
-        
-         | <a href="/blog/2013/12/02/hello-world/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Welcome to our new blog! Instructure is a technology company. And we have some pretty killer technologists who have opinions. This blog is an outlet for them to talk about stuff.</p>
-
-<p>Feel free to join in the discussion. If you disagree, don&rsquo;t be a wimp—speak up.</p>
-
-<p>Look forward to talking more!</p>
-
-<p>Joel
-CTO</p>
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
-  
-  
+  </section>
 
-
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
 </div>
+
 <aside class="sidebar">
   
     <section>
@@ -375,6 +278,7 @@ CTO</p>
   
 </aside>
 
+
     </div>
   </div>
   <footer role="contentinfo"><p>
@@ -393,7 +297,10 @@ CTO</p>
       var disqus_shortname = 'canvasdevandfriends';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://instructure.github.io/blog/2013/12/30/generating-accessible-colors-in-javascript/';
+        var disqus_url = 'http://instructure.github.io/blog/2013/12/30/generating-accessible-colors-in-javascript/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: design | Instructure Tech Blog]]></title>
+  <link href="http://instructure.github.io/blog/categories/design/atom.xml" rel="self"/>
+  <link href="http://instructure.github.io/"/>
+  <updated>2013-12-30T09:21:40-07:00</updated>
+  <id>http://instructure.github.io/</id>
+  <author>
+    <name><![CDATA[Instructure]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Generating Accessible Colors in JavaScript]]></title>
+    <link href="http://instructure.github.io/blog/2013/12/30/generating-accessible-colors-in-javascript/"/>
+    <updated>2013-12-30T14:42:00-07:00</updated>
+    <id>http://instructure.github.io/blog/2013/12/30/generating-accessible-colors-in-javascript</id>
+    <content type="html"><![CDATA[<p>We recently released a major upgrade to Canvas&rsquo;s calendar. Although the primary objective was adding an agenda view and other accessibility tools, we also took the opportunity to update its visual design, including the color coding that links events and calendars. We&rsquo;ve released this new color code generator as a Bower package at <a href="https://github.com/instructure/color-slicer">github/instructure/color-slicer</a>. Here&rsquo;s why we switched.</p>
+
+<!--more-->
+
+
+<h2>Objectives</h2>
+
+<p>Our old color coding system was pretty simple: we had a list of ten hues, and we assigned them to calendars in order. The drawbacks were that colors would repeat after ten calendars and that the colors used weren&rsquo;t very appealing.</p>
+
+<p> <img src="http://i.imgur.com/6lBEr3V.png" alt="" /></p>
+
+<p>Another system we considered was <a href="https://github.com/instructure/canvas-lms/blob/stable/app/coffeescripts/util/contextColors.coffee">our hash-based color generator</a>, which creates a color based on an object name or ID. This would avoid repetition, but unlucky users could end up with three slightly different shades of green for their three courses.</p>
+
+<p>For the new system, then, we had three goals:</p>
+
+<ul>
+<li>Produce colors that look nice and are accessibly readable for text.</li>
+<li>Allow an unlimited number of colors without repetition.</li>
+<li>Keep colors visually distinct, especially for short lists.</li>
+</ul>
+
+
+<h2>Text colors</h2>
+
+<p>The simplest way to generate bright colors would be use HSV and to vary the hue while using 100% saturation and value. For text on a white background, though, this makes yellows almost invisible:</p>
+
+<p><a href="http://jsfiddle.net/3KX8d/1/"><img src="http://i.imgur.com/kk4ntIE.png" /></a></p>
+
+<p>Instead, we use the <a href="http://en.wikipedia.org/wiki/Lab_color_space">Lab color space</a>, which adjusts for human sensitivity to green, providing a better measurement of lightness and more evenly distributed hues. This not only looks better, but also helps users with limited vision by meeting <a href="http://webaim.org/resources/contrastchecker/">WCAG AA contrast guidelines</a>.</p>
+
+<p><a href="http://jsfiddle.net/G9Qmm/1/"><img src="http://i.imgur.com/V5jstLt.png?1" /></a></p>
+
+<h2>Spacing</h2>
+
+<p>An easy way to space the colors would be to divide the hue circle by the number of calendars. We didn&rsquo;t want all of the colors to change whenever a user added a course, though; we wanted to use the same colors for the first three calendars whether there were three or thirty total. To accomplish this, we <a href="http://jsfiddle.net/UqSS3/6/">progressively divide each gap in half</a>: first we use 0°, then 180°, then 90°, then 270°, then 45°, and so on. This way, your first few calendars are always very visually distinct.</p>
+
+<p>Formally, this is essentially an <a href="http://en.wikipedia.org/wiki/Online_algorithm">online</a> <a href="http://en.wikipedia.org/wiki/Thomson_problem">Thomson problem</a>. We&rsquo;re lucky to only have to solve the one-dimensional version, but the same basic idea could certainly be used to vary hue and value simultaneously if you wanted to generate many distinct colors and didn&rsquo;t care about legibility. The <a href="http://sitemason.vanderbilt.edu/page/hmbADS">spiral point heuristic</a> would probably work well&mdash;we&rsquo;d love to see someone send us a pull request.</p>
+
+<h2>Results</h2>
+
+<p>We&rsquo;re always refining our user experience, but we&rsquo;re happy with the look of our new colors.</p>
+
+<p> <img src="http://i.imgur.com/GLSrwyh.png?1" alt="" /></p>
+
+<p>We&rsquo;ve released <a href="https://github.com/instructure/color-slicer">color-slicer</a> in UMD format under an MIT license, so it should be easy to add to your projects. I hope you&rsquo;ll find it useful. My favorite part of working at Instructure&mdash;better than weekly lunch&mdash;is spending most of my time crafting code that we give back to the community. Let us know what you think.</p>
+]]></content>
+  </entry>
+  
+</feed>
