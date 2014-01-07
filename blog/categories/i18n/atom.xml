@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: I18n | Instructure Tech Blog]]></title>
+  <link href="http://instructure.github.io/blog/categories/i18n/atom.xml" rel="self"/>
+  <link href="http://instructure.github.io/"/>
+  <updated>2014-01-07T08:10:21-07:00</updated>
+  <id>http://instructure.github.io/</id>
+  <author>
+    <name><![CDATA[Instructure]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Faster I18n Backend for Ruby Written in C]]></title>
+    <link href="http://instructure.github.io/blog/2014/01/07/faster-ruby-i18n-backend-written-in-c/"/>
+    <updated>2014-01-07T07:32:00-07:00</updated>
+    <id>http://instructure.github.io/blog/2014/01/07/faster-ruby-i18n-backend-written-in-c</id>
+    <content type="html"><![CDATA[<p>Every so often, we like to do a hack(fest|stravaganza|nado) here at
+Instructure. It&rsquo;s an opportunity for engineers to spend several days
+building something cool to improve <a href="https://github.com/instructure/canvas-lms">Canvas</a>.</p>
+
+<p>For our inaugural hackthing back in May, I worked on the problem of having
+lots of objects in memory in Ruby 1.9. Ruby uses a mark-and-sweep garbage
+collector, so the more Ruby objects you have in memory, the longer each GC
+run will take. This can be a significant contributor to slow page loads in
+a large Rails app like Canvas.</p>
+
+<!--more-->
+
+
+<p>At the time, Canvas was localized in 7 languages (we&rsquo;re now up to 15). We
+use the excellent <a href="https://github.com/svenfuchs/i18n">I18n gem</a> with a
+<a href="https://github.com/instructure/canvas-lms/blob/stable/config/initializers/i18n.rb">few</a>
+<a href="https://github.com/instructure/canvas-lms/blob/stable/lib/tasks/i18n.rake">handy</a>
+<a href="https://github.com/instructure/canvas-lms/tree/stable/lib/i18n_extraction">extensions</a>
+of our own. While I18n&rsquo;s default in-memory backend is plenty fast, it
+comes at the cost of having all of those strings in memory. Every new
+language you add or feature you implement makes the GC problem even worse.</p>
+
+<p>Because localization strings should be static for the lifetime of a Rails
+process, there is no reason the garbage collector needs to know about them
+at all. But we still want to keep them in memory for optimal speed.</p>
+
+<p>Enter <a href="https://github.com/instructure/i18nema">I18nema</a>, a fast I18n
+backend that unstops the garbage collector and gets everything running
+quickly and smoothly :).</p>
+
+<h2>What Is an I18nema?</h2>
+
+<p>At its core, I18nema is a Ruby C extension that moves I18n&rsquo;s translations
+out of Ruby-land and into C structs. It also includes a handful of other
+optimizations to I18n, leading to some nice all around speedups.</p>
+
+<h2>How Is It Administered?</h2>
+
+<p>In your Gemfile, do</p>
+
+<p><code>ruby
+gem 'i18nema'
+</code></p>
+
+<p>and then put something like this in an initializer:</p>
+
+<p><code>ruby
+I18n.backend = I18nema::Backend.new
+</code></p>
+
+<p>You can still pull in additional I18n features (e.g. <code>I18n::Backend::Fallbacks</code>).
+Refer to <a href="https://github.com/instructure/i18nema/blob/master/README.md">the README</a>
+for more information.</p>
+
+<h2>How Will It Improve My Quality of Life?</h2>
+
+<h3>More Get-Up-and-Go</h3>
+
+<p>I18nema loads translations into memory much more quickly—<strong>over 4x!</strong>—
+making for much faster Rails startup time. While this is just a one time
+hit, it&rsquo;s very noticeable when you&rsquo;re waiting on it (e.g. console, specs).
+In Canvas, I18nema brings it down to a little over a second (from almost
+6).</p>
+
+<h3>Minimal Blockage</h3>
+
+<p>Because there are fewer Ruby objects, the periodic GC runs are
+proportionally faster with I18nema. That means faster page loads for your
+users.</p>
+
+<p>How much faster is a question of how many translations you have versus how
+many other Ruby objects. Applications that are localized in more languages
+should see a bigger boost (since the translations make up a bigger share
+of the original ObjectSpace).</p>
+
+<p>For example, Canvas is translated into fifteen languages, and I18nema
+reduces both (startup) ObjectSpace and GC runtime by <strong>about 15%</strong>. As more
+languages are added, that number should only increase.</p>
+
+<p>I18nema also moves I18n&rsquo;s normalized_key_cache into C structs. This key
+cache grows over time (it eventually holds a key/value for every
+translation key used in the app), so that&rsquo;s another area where I18nema is
+nicer on ObjectSpace than vanilla I18n.</p>
+
+<h3>More Pep in Your Step</h3>
+
+<p>I18nema speeds up <code>translate</code> calls, getting the right text to your users
+more quickly.</p>
+
+<p>Simple lookups (i.e. no options or interpolation) take a bit <strong>over 15%</strong> less
+time.</p>
+
+<p>Lookups with options see slightly bigger gains (<strong>over 20%</strong> less time), in
+part due to some speedups on the Ruby side of things (I18n uses
+<code>Hash#except</code>, which is quite slow when you have a long list of
+arguments).</p>
+
+<h2>Is I18nema Right for Me?</h2>
+
+<p>I18nema is not for everyone.</p>
+
+<p>If you&rsquo;re still on Ruby 1.8, you should not use I18nema. Although I18nema
+has been tested on Ruby 1.9, 2.0, and 2.1, it has only been benchmarked
+on 1.9. You may find it less effective on 2.1, due to its <a href="http://tmm1.net/ruby21-rgengc/">dramatic GC improvements</a>.</p>
+
+<p>When using I18nema, you should make sure that your translation files are
+UTF-8. I18nema cannot be used with <code>.rb</code> translation files (only <code>.yml</code>)</p>
+
+<p>Refer to <a href="https://github.com/instructure/i18nema/blob/master/README.md">the fine print</a>
+for more information and benchmarks.</p>
+]]></content>
+  </entry>
+  
+</feed>

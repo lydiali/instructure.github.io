@@ -4,7 +4,7 @@
   <title><![CDATA[Category: API | Instructure Tech Blog]]></title>
   <link href="http://instructure.github.io/blog/categories/api/atom.xml" rel="self"/>
   <link href="http://instructure.github.io/"/>
-  <updated>2013-12-30T09:21:40-07:00</updated>
+  <updated>2014-01-07T08:10:21-07:00</updated>
   <id>http://instructure.github.io/</id>
   <author>
     <name><![CDATA[Instructure]]></name>
@@ -59,7 +59,7 @@
 
 <h2>Resources:</h2>
 
-<h4>Retrofit:</h4>
+<h3>Retrofit:</h3>
 
 <ul>
 <li><a href="https://github.com/square/retrofit">Source and Samples</a> (Source and samples)</li>
@@ -68,7 +68,7 @@
 </ul>
 
 
-<h4>Volley:</h4>
+<h3>Volley:</h3>
 
 <ul>
 <li><a href="https://android.googlesource.com/platform/frameworks/volley/">Source</a></li>

@@ -9,7 +9,8 @@
   <meta name="author" content="Instructure">
 
   
-  <meta name="description" content="We recently released a major upgrade to Canvas&rsquo;s calendar. Although the primary objective was adding an agenda view and other accessibility &hellip;">
+  <meta name="description" content="Every so often, we like to do a hack(fest|stravaganza|nado) here at
+Instructure. It&rsquo;s an opportunity for engineers to spend several days &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -91,6 +92,57 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/01/07/faster-ruby-i18n-backend-written-in-c/">Faster I18n Backend for Ruby Written in C</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-01-07T07:32:00-07:00" pubdate data-updated="true">Jan 7<span>th</span>, 2014</time>
+        
+         | <a href="/blog/2014/01/07/faster-ruby-i18n-backend-written-in-c/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Every so often, we like to do a hack(fest|stravaganza|nado) here at
+Instructure. It&rsquo;s an opportunity for engineers to spend several days
+building something cool to improve <a href="https://github.com/instructure/canvas-lms">Canvas</a>.</p>
+
+<p>For our inaugural hackthing back in May, I worked on the problem of having
+lots of objects in memory in Ruby 1.9. Ruby uses a mark-and-sweep garbage
+collector, so the more Ruby objects you have in memory, the longer each GC
+run will take. This can be a significant contributor to slow page loads in
+a large Rails app like Canvas.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/01/07/faster-ruby-i18n-backend-written-in-c/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -346,6 +398,10 @@ CTO</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/01/07/faster-ruby-i18n-backend-written-in-c/">Faster I18n Backend for Ruby Written in C</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/12/30/generating-accessible-colors-in-javascript/">Generating Accessible Colors in JavaScript</a>
       </li>
     
@@ -361,10 +417,6 @@ CTO</p>
         <a href="/blog/2013/12/02/crafting-accessible-content/">Crafting Accessible Content</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2013/12/02/hello-world/">Hello World!</a>
-      </li>
-    
   </ul>
 </section>
 
@@ -378,7 +430,7 @@ CTO</p>
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Instructure -
+  Copyright &copy; 2014 - Instructure -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
