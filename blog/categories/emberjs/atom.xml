@@ -4,7 +4,7 @@
   <title><![CDATA[Category: EmberJS | Instructure Tech Blog]]></title>
   <link href="http://instructure.github.io/blog/categories/emberjs/atom.xml" rel="self"/>
   <link href="http://instructure.github.io/"/>
-  <updated>2014-01-07T08:10:21-07:00</updated>
+  <updated>2014-01-13T09:23:38-07:00</updated>
   <id>http://instructure.github.io/</id>
   <author>
     <name><![CDATA[Instructure]]></name>
@@ -18,7 +18,10 @@
     <link href="http://instructure.github.io/blog/2013/12/17/facebook-react-vs-ember/"/>
     <updated>2013-12-17T08:54:00-07:00</updated>
     <id>http://instructure.github.io/blog/2013/12/17/facebook-react-vs-ember</id>
-    <content type="html"><![CDATA[<p>We engineers at Instructure love <a href="http://www.emberjs.com">Ember</a>. We also love to learn about other frameworks and know which tools are the best for the job at hand. One of the newer frameworks to come out is React.</p>
+    <content type="html"><![CDATA[<div class="comment">Edited Jan 13, 2014 with minor changes which allow for testing timeouts in Ember.</div>
+
+
+<p>We engineers at Instructure love <a href="http://www.emberjs.com">Ember</a>. We also love to learn about other frameworks and know which tools are the best for the job at hand. One of the newer frameworks to come out is React.</p>
 
 <p><a href="http://facebook.github.io/react/">React</a> is Facebook&rsquo;s new JavaScript library for building user interfaces. I&rsquo;m excited to see another player in the game of front-end JS frameworks. When we have so much mind share going to a similar problem, we all win.</p>
 
@@ -122,7 +125,9 @@ App.TimeOnPageComponent = Em.Component.extend({
 <p>  // Initiates timer when element is rendered
   startTimer: function() {</p>
 
-<pre><code>this.interval = setInterval(this.tick.bind(this), 1000);
+<pre><code>Ember.run.next(this, function() {
+  this.interval = setInterval(this.tick.bind(this), 1000);
+});
 </code></pre>
 
 <p>  }.on(&lsquo;didInsertElement&rsquo;),</p>
@@ -139,7 +144,7 @@ App.TimeOnPageComponent = Em.Component.extend({
 
 <h3>Example:</h3>
 
-<p><a class="jsbin-embed" href="http://jsbin.com/AFepecE/5/embed?js,output">Facebook React vs Ember</a><script src="http://static.jsbin.com/js/embed.js"></script></p>
+<p><a class="jsbin-embed" href="http://jsbin.com/OPeVeted/2/embed?js,output">Facebook React vs Ember</a><script src="http://static.jsbin.com/js/embed.js"></script></p>
 
 <h2>An Application</h2>
 
@@ -203,7 +208,12 @@ React.renderComponent(<TodoApp />, mountNode);
 
 <p>```js Ember (controller)
 App.ApplicationController = Em.ArrayController.extend({
-  content: [],</p>
+  content: function() {</p>
+
+<pre><code>return [];
+</code></pre>
+
+<p>  }.property(),</p>
 
 <p>  btnLabel: function() {</p>
 
@@ -247,7 +257,7 @@ App.ApplicationController = Em.ArrayController.extend({
 
 <h3>Example:</h3>
 
-<p><a class="jsbin-embed" href="http://jsbin.com/OkOLEze/3/embed?html,js,output">Facebook React vs Ember</a><script src="http://static.jsbin.com/js/embed.js"></script></p>
+<p><a class="jsbin-embed" href="http://jsbin.com/OkOLEze/4/embed?html,js,output">Facebook React vs Ember</a><script src="http://static.jsbin.com/js/embed.js"></script></p>
 
 <h2>A Component Using External Plugins</h2>
 

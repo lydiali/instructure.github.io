@@ -9,7 +9,7 @@
   <meta name="author" content="Instructure">
 
   
-  <meta name="description" content="We engineers at Instructure love Ember. We also love to learn about other frameworks and know which tools are the best for the job at hand. One of &hellip;">
+  <meta name="description" content="Edited Jan 13, 2014 with minor changes which allow for testing timeouts in Ember. We engineers at Instructure love Ember. We also love to learn about &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -119,7 +119,10 @@
   </header>
 
 
-<div class="entry-content"><p>We engineers at Instructure love <a href="http://www.emberjs.com">Ember</a>. We also love to learn about other frameworks and know which tools are the best for the job at hand. One of the newer frameworks to come out is React.</p>
+<div class="entry-content"><div class="comment">Edited Jan 13, 2014 with minor changes which allow for testing timeouts in Ember.</div>
+
+
+<p>We engineers at Instructure love <a href="http://www.emberjs.com">Ember</a>. We also love to learn about other frameworks and know which tools are the best for the job at hand. One of the newer frameworks to come out is React.</p>
 
 <p><a href="http://facebook.github.io/react/">React</a> is Facebook&rsquo;s new JavaScript library for building user interfaces. I&rsquo;m excited to see another player in the game of front-end JS frameworks. When we have so much mind share going to a similar problem, we all win.</p>
 
@@ -237,6 +240,8 @@
 <span class='line-number'>16</span>
 <span class='line-number'>17</span>
 <span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
 </pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">App</span><span class="p">.</span><span class="nx">TimeOnPageComponent</span> <span class="o">=</span> <span class="nx">Em</span><span class="p">.</span><span class="nx">Component</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
 </span><span class='line'>  <span class="nx">secondsViewed</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
 </span><span class='line'>
@@ -247,7 +252,9 @@
 </span><span class='line'>
 </span><span class='line'>  <span class="c1">// Initiates timer when element is rendered</span>
 </span><span class='line'>  <span class="nx">startTimer</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>    <span class="k">this</span><span class="p">.</span><span class="nx">interval</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">tick</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">),</span> <span class="mi">1000</span><span class="p">);</span>
+</span><span class='line'>    <span class="nx">Ember</span><span class="p">.</span><span class="nx">run</span><span class="p">.</span><span class="nx">next</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>      <span class="k">this</span><span class="p">.</span><span class="nx">interval</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">tick</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">),</span> <span class="mi">1000</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">});</span>
 </span><span class='line'>  <span class="p">}.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;didInsertElement&#39;</span><span class="p">),</span>
 </span><span class='line'>
 </span><span class='line'>  <span class="c1">// Ensure that the timer stops when closed</span>
@@ -260,7 +267,7 @@
 
 <h3>Example:</h3>
 
-<p><a class="jsbin-embed" href="http://jsbin.com/AFepecE/5/embed?js,output">Facebook React vs Ember</a><script src="http://static.jsbin.com/js/embed.js"></script></p>
+<p><a class="jsbin-embed" href="http://jsbin.com/OPeVeted/2/embed?js,output">Facebook React vs Ember</a><script src="http://static.jsbin.com/js/embed.js"></script></p>
 
 <h2>An Application</h2>
 
@@ -357,8 +364,12 @@
 <span class='line-number'>12</span>
 <span class='line-number'>13</span>
 <span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
 </pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">App</span><span class="p">.</span><span class="nx">ApplicationController</span> <span class="o">=</span> <span class="nx">Em</span><span class="p">.</span><span class="nx">ArrayController</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
-</span><span class='line'>  <span class="nx">content</span><span class="o">:</span> <span class="p">[],</span>
+</span><span class='line'>  <span class="nx">content</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="p">[];</span>
+</span><span class='line'>  <span class="p">}.</span><span class="nx">property</span><span class="p">(),</span>
 </span><span class='line'>
 </span><span class='line'>  <span class="nx">btnLabel</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 </span><span class='line'>    <span class="k">return</span> <span class="s2">&quot;Add #&quot;</span> <span class="o">+</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;content.length&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
@@ -407,7 +418,7 @@
 
 <h3>Example:</h3>
 
-<p><a class="jsbin-embed" href="http://jsbin.com/OkOLEze/3/embed?html,js,output">Facebook React vs Ember</a><script src="http://static.jsbin.com/js/embed.js"></script></p>
+<p><a class="jsbin-embed" href="http://jsbin.com/OkOLEze/4/embed?html,js,output">Facebook React vs Ember</a><script src="http://static.jsbin.com/js/embed.js"></script></p>
 
 <h2>A Component Using External Plugins</h2>
 
