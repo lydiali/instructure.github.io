@@ -4,7 +4,7 @@
   <title><![CDATA[Category: EmberJS | Instructure Tech Blog]]></title>
   <link href="http://instructure.github.io/blog/categories/emberjs/atom.xml" rel="self"/>
   <link href="http://instructure.github.io/"/>
-  <updated>2014-01-13T09:23:38-07:00</updated>
+  <updated>2014-01-13T12:38:39-07:00</updated>
   <id>http://instructure.github.io/</id>
   <author>
     <name><![CDATA[Instructure]]></name>
@@ -122,12 +122,17 @@ App.TimeOnPageComponent = Em.Component.extend({
 
 <p>  },</p>
 
+<p>  onInterval: function(){</p>
+
+<pre><code>Ember.run(this, this.tick);
+</code></pre>
+
+<p>  },</p>
+
 <p>  // Initiates timer when element is rendered
   startTimer: function() {</p>
 
-<pre><code>Ember.run.next(this, function() {
-  this.interval = setInterval(this.tick.bind(this), 1000);
-});
+<pre><code>this._interval = setInterval(this.onInterval.bind(this), 1000);
 </code></pre>
 
 <p>  }.on(&lsquo;didInsertElement&rsquo;),</p>
@@ -135,7 +140,8 @@ App.TimeOnPageComponent = Em.Component.extend({
 <p>  // Ensure that the timer stops when closed
   clearInterval: function() {</p>
 
-<pre><code>clearInterval(this.interval);
+<pre><code>clearInterval(this._interval);
+this._interval = null;
 </code></pre>
 
 <p>  }.on(&lsquo;willDestroyElement&rsquo;)
@@ -144,7 +150,7 @@ App.TimeOnPageComponent = Em.Component.extend({
 
 <h3>Example:</h3>
 
-<p><a class="jsbin-embed" href="http://jsbin.com/OPeVeted/2/embed?js,output">Facebook React vs Ember</a><script src="http://static.jsbin.com/js/embed.js"></script></p>
+<p><a class="jsbin-embed" href="http://jsbin.com/OPeVeted/6/embed?js,output">Facebook React vs Ember</a><script src="http://static.jsbin.com/js/embed.js"></script></p>
 
 <h2>An Application</h2>
 

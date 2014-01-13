@@ -242,6 +242,9 @@
 <span class='line-number'>18</span>
 <span class='line-number'>19</span>
 <span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
 </pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">App</span><span class="p">.</span><span class="nx">TimeOnPageComponent</span> <span class="o">=</span> <span class="nx">Em</span><span class="p">.</span><span class="nx">Component</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
 </span><span class='line'>  <span class="nx">secondsViewed</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
 </span><span class='line'>
@@ -250,16 +253,19 @@
 </span><span class='line'>    <span class="k">this</span><span class="p">.</span><span class="nx">incrementProperty</span><span class="p">(</span><span class="s1">&#39;secondsViewed&#39;</span><span class="p">);</span>
 </span><span class='line'>  <span class="p">},</span>
 </span><span class='line'>
+</span><span class='line'>  <span class="nx">onInterval</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+</span><span class='line'>    <span class="nx">Ember</span><span class="p">.</span><span class="nx">run</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">tick</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">},</span>
+</span><span class='line'>
 </span><span class='line'>  <span class="c1">// Initiates timer when element is rendered</span>
 </span><span class='line'>  <span class="nx">startTimer</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>    <span class="nx">Ember</span><span class="p">.</span><span class="nx">run</span><span class="p">.</span><span class="nx">next</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>      <span class="k">this</span><span class="p">.</span><span class="nx">interval</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">tick</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">),</span> <span class="mi">1000</span><span class="p">);</span>
-</span><span class='line'>    <span class="p">});</span>
+</span><span class='line'>    <span class="k">this</span><span class="p">.</span><span class="nx">_interval</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">onInterval</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">),</span> <span class="mi">1000</span><span class="p">);</span>
 </span><span class='line'>  <span class="p">}.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;didInsertElement&#39;</span><span class="p">),</span>
 </span><span class='line'>
 </span><span class='line'>  <span class="c1">// Ensure that the timer stops when closed</span>
 </span><span class='line'>  <span class="nx">clearInterval</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-</span><span class='line'>    <span class="nx">clearInterval</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">interval</span><span class="p">);</span>
+</span><span class='line'>    <span class="nx">clearInterval</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_interval</span><span class="p">);</span>
+</span><span class='line'>    <span class="k">this</span><span class="p">.</span><span class="nx">_interval</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
 </span><span class='line'>  <span class="p">}.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;willDestroyElement&#39;</span><span class="p">)</span>
 </span><span class='line'><span class="p">});</span>
 </span></code></pre></td></tr></table></div></figure>
@@ -267,7 +273,7 @@
 
 <h3>Example:</h3>
 
-<p><a class="jsbin-embed" href="http://jsbin.com/OPeVeted/2/embed?js,output">Facebook React vs Ember</a><script src="http://static.jsbin.com/js/embed.js"></script></p>
+<p><a class="jsbin-embed" href="http://jsbin.com/OPeVeted/6/embed?js,output">Facebook React vs Ember</a><script src="http://static.jsbin.com/js/embed.js"></script></p>
 
 <h2>An Application</h2>
 
