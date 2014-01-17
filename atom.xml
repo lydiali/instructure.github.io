@@ -4,7 +4,7 @@
   <title><![CDATA[Instructure Tech Blog]]></title>
   <link href="http://instructure.github.io/atom.xml" rel="self"/>
   <link href="http://instructure.github.io/"/>
-  <updated>2014-01-13T12:38:39-07:00</updated>
+  <updated>2014-01-17T11:05:46-07:00</updated>
   <id>http://instructure.github.io/</id>
   <author>
     <name><![CDATA[Instructure]]></name>
@@ -59,7 +59,7 @@ optimizations to I18n, leading to some nice all around speedups.</p>
 <p>In your Gemfile, do</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">gem</span> <span class="s1">&#39;i18nema&#39;</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">gem</span> <span class="no">RUBY_VERSION</span> <span class="o">&gt;=</span> <span class="s1">&#39;2.0&#39;</span> <span class="p">?</span> <span class="s1">&#39;i18nema&#39;</span> <span class="p">:</span> <span class="s1">&#39;i18nema19&#39;</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
