@@ -4,7 +4,7 @@
   <title><![CDATA[Category: EmberJS | Instructure Tech Blog]]></title>
   <link href="http://instructure.github.io/blog/categories/emberjs/atom.xml" rel="self"/>
   <link href="http://instructure.github.io/"/>
-  <updated>2014-01-17T11:05:46-07:00</updated>
+  <updated>2014-01-24T10:42:53-07:00</updated>
   <id>http://instructure.github.io/</id>
   <author>
     <name><![CDATA[Instructure]]></name>
@@ -12,6 +12,38 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Ember Run Loop and TDD]]></title>
+    <link href="http://instructure.github.io/blog/2014/01/24/ember-run-loop-and-tdd/"/>
+    <updated>2014-01-24T08:58:00-07:00</updated>
+    <id>http://instructure.github.io/blog/2014/01/24/ember-run-loop-and-tdd</id>
+    <content type="html"><![CDATA[<p>Each month, <a href="http://www.meetup.com/EmberJS-SLC/">nerds unite</a> at the Instructure building to share their knowledge on <a href="http://www.emberjs.com">Ember</a>. This month we had two presentations by a couple of Instructure engineers. Here are the videos and accompanying slides/code.</p>
+
+<h2>Ember Run Loop</h2>
+
+<p>Jason Madsen (<a href="https://twitter.com/jason_madsen">@jason_madsen</a>) discussed the what, why, and how of the Ember Run Loop. Learn how Ember manages the run loop for you, and cases where you will want to manage the run loop. Here&rsquo;s a hint: speed and testing.</p>
+
+<iframe width="560" height="315" src="http://instructure.github.io//www.youtube.com/embed/RLgPBM72LQw" frameborder="0" allowfullscreen></iframe>
+
+
+<p><a href="http://knomedia.github.io/presentation_2014_01_23_ember_run_loop">Slides</a></p>
+
+<h2>Testing Your Ember Application using TDD</h2>
+
+<p>Eric Berry (<a href="https://twitter.com/cavneb">@cavneb</a>) presented on how to &ldquo;Test Drive&rdquo; your Ember applications. Eric starts from scratch and walks through different types of tests that can be written. By the end, you will have a much better understanding of how to test your Ember application.</p>
+
+<iframe width="560" height="315" src="http://instructure.github.io//www.youtube.com/embed/GRT5YcXmm7E" frameborder="0" allowfullscreen></iframe>
+
+
+<p><a href="http://cavneb.github.io/presentations-2014.01.23-Ember-Testing">Slides</a> |
+<a href="https://github.com/cavneb/presentations-2014.01.23-Ember-Testing/tree/master/ember-app">Code</a></p>
+
+<h2>Nerd with us!</h2>
+
+<p>Feel free to join our monthly meetups (even remotely). The meetings are posted at <a href="http://www.meetup.com/EmberJS-SLC/">http://www.meetup.com/EmberJS-SLC/</a>.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Facebook React vs. Ember]]></title>
