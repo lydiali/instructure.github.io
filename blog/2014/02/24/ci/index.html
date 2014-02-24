@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Hello World! - Instructure Tech Blog</title>
+  <title>Continuous Integration - Instructure Tech Blog</title>
   <meta name="author" content="Instructure">
 
   
-  <meta name="description" content="Welcome to our new blog! Instructure is a technology company. And we have some pretty killer technologists who have opinions. This blog is an outlet &hellip;">
+  <meta name="description" content="Parallelization, Selenium, AWS, and a CI server are common implementations for agile
+shops, and we are no exception. Since I&rsquo;ve been here, &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://instructure.github.io/blog/2013/12/02/hello-world">
+  <link rel="canonical" href="http://instructure.github.io/blog/2014/02/24/ci">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Instructure Tech Blog" type="application/atom+xml">
@@ -94,7 +95,7 @@
   
   <header>
     
-      <h1 class="entry-title">Hello World!</h1>
+      <h1 class="entry-title">Continuous Integration</h1>
     
     
       <p class="meta">
@@ -110,7 +111,7 @@
   
 
 
-<time datetime="2013-12-02T08:39:00-07:00" pubdate data-updated="true">Dec 2<span>nd</span>, 2013</time>
+<time datetime="2014-02-24T11:04:00-07:00" pubdate data-updated="true">Feb 24<span>th</span>, 2014</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -119,14 +120,76 @@
   </header>
 
 
-<div class="entry-content"><p>Welcome to our new blog! Instructure is a technology company. And we have some pretty killer technologists who have opinions. This blog is an outlet for them to talk about stuff.</p>
+<div class="entry-content"><p>Parallelization, Selenium, AWS, and a CI server are common implementations for agile
+shops, and we are no exception. Since I&rsquo;ve been here, maintenance hasn&rsquo;t
+been a nightmare, nor has it been a dream. We&rsquo;ve learned a few things
+to streamline our maintenance process and would love to share the things
+that made our lives easier.</p>
 
-<p>Feel free to join in the discussion. If you disagree, don&rsquo;t be a wimp—speak up.</p>
+<p>When looking at what was eating up our time, we found the differences
+between our CI environment and average developer’s environment was at
+the forefront. Most of us at Instructure use Macs, a few of us Windows,
+and there are a handful Linux users. Among us, browser choice varies,
+but the most popular is Chrome. Engineers develop locally using their
+own OS, browser type/version and the Ruby Selenium driver to power
+tests. Listed below are a few of the differences we found:</p>
 
-<p>Look forward to talking more!</p>
+<ol>
+<li> AWS images were Ubuntu</li>
+<li> Variance in browser versions</li>
+<li> Selenium grid uses Java stand alone server VS local specs running using native Ruby driver</li>
+<li> Variance in native event capabilities VS Jenkins running exclusively using native events</li>
+<li> Parallelization in CI vs single threaded specs in developer’s environment</li>
+</ol>
 
-<p>Joel
-CTO</p>
+
+<!-- more -->
+
+
+<p>We began to strive for consistency between the average dev environment and
+the CI environments, where we could, without sacraficing production like implementation.
+This helped with mitigating many intermittency issues. During this
+process, it simplified the CI upgrade process while edging maintenance
+towards dreamland and further from Elm St.</p>
+
+<p>So, what did we do to make this happen? First, all logic for Selenium
+driver code was changed from Selenium grid\Java stand-alone server to
+the native Ruby Selenium driver. This change immediately resulted in
+noticeable stability improvements, and easier resolution for
+intermittency creep from tests.</p>
+
+<p>In the past, we had challenges reproducing errors, locally, that our CI
+server would throw because of the variance in environments. We spent a
+lot of time debugging these errors, and had to create CI environments
+that devs could SSH into, to debug the spec failures. This was highly
+inefficient, and not consistent with the nature or true purpose of CI.
+Making the two environments consistent gave us more time to work on
+other things, instead of time-consuming and meaningless failures that were challenging and
+intensive to debug. Now we are easily able to (for the most part)
+reproduce all errors produced by our CI server.</p>
+
+<p>Along the way, we also found Selenium grid was not the ideal solution for us.
+The main reason being the variance in spec outcomes
+between dev environments and CI, resulting in too much overhead for
+maintenance and upgrades, while also sapping dev time on CI spec
+debugging. Many shops use a hardware infrastructure that is distributed
+across multiple boxes and the tests are farmed out to them; this is
+ideal for Selenium grid. We, however, prefer one big box with
+parallelization done internally, reducing the need for a Java stand-alone
+server and Selenium grid. Capabilities for the drivers are consumed from
+config files written at runtime for different browsers and we have no
+need to push each test to a Selenium hub to be farmed out to a worker.
+We found this complicated setup offered little reward and brought on
+noticeable burden in maintenance and stability while introducing a
+variance in spec outcomes.</p>
+
+<p>Making these changes made our lives noticeably easier. When managing
+or implementing a CI environment, we believe it&rsquo;s prudent to not only consider your core
+tech architecture, but the relationship with your developer&rsquo;s workflow.
+Although complex implementations of Selenium grid and multiple browsers can be beneficial,
+it may add more complications than are worth it.
+We recommend a lean implementation of Selenium, using the driver of the native application
+language for tighter integration and better maintenance with more consistency between test runs.</p>
 </div>
 
 
@@ -135,7 +198,7 @@ CTO</p>
       
   
 
-<span class="byline author vcard">Posted by <span class="fn">Joel Dehlin</span></span>
+<span class="byline author vcard">Posted by <span class="fn">Shawn Meredith</span></span>
 
       
 
@@ -149,15 +212,21 @@ CTO</p>
   
 
 
-<time datetime="2013-12-02T08:39:00-07:00" pubdate data-updated="true">Dec 2<span>nd</span>, 2013</time>
+<time datetime="2014-02-24T11:04:00-07:00" pubdate data-updated="true">Feb 24<span>th</span>, 2014</time>
       
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/continuousintegration/'>continuousIntegration</a>, <a class='category' href='/blog/categories/qa/'>qa</a>
+  
+</span>
 
 
     </p>
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://instructure.github.io/blog/2013/12/02/hello-world/" data-via="" data-counturl="http://instructure.github.io/blog/2013/12/02/hello-world/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://instructure.github.io/blog/2014/02/24/ci/" data-via="" data-counturl="http://instructure.github.io/blog/2014/02/24/ci/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -170,8 +239,8 @@ CTO</p>
     
     <p class="meta">
       
+        <a class="basic-alignment left" href="/blog/2014/01/24/ember-run-loop-and-tdd/" title="Previous Post: Ember Run Loop and TDD">&laquo; Ember Run Loop and TDD</a>
       
-        <a class="basic-alignment right" href="/blog/2013/12/02/crafting-accessible-content/" title="Next Post: Crafting accessible content">Crafting accessible content &raquo;</a>
       
     </p>
   </footer>
@@ -255,8 +324,8 @@ CTO</p>
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://instructure.github.io/blog/2013/12/02/hello-world/';
-        var disqus_url = 'http://instructure.github.io/blog/2013/12/02/hello-world/';
+        var disqus_identifier = 'http://instructure.github.io/blog/2014/02/24/ci/';
+        var disqus_url = 'http://instructure.github.io/blog/2014/02/24/ci/';
         var disqus_script = 'embed.js';
       
     (function () {

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: continuousIntegration | Instructure Tech Blog]]></title>
+  <link href="http://instructure.github.io/blog/categories/continuousintegration/atom.xml" rel="self"/>
+  <link href="http://instructure.github.io/"/>
+  <updated>2014-02-24T09:12:11-07:00</updated>
+  <id>http://instructure.github.io/</id>
+  <author>
+    <name><![CDATA[Instructure]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Continuous Integration]]></title>
+    <link href="http://instructure.github.io/blog/2014/02/24/ci/"/>
+    <updated>2014-02-24T11:04:00-07:00</updated>
+    <id>http://instructure.github.io/blog/2014/02/24/ci</id>
+    <content type="html"><![CDATA[<p>Parallelization, Selenium, AWS, and a CI server are common implementations for agile
+shops, and we are no exception. Since I&rsquo;ve been here, maintenance hasn&rsquo;t
+been a nightmare, nor has it been a dream. We&rsquo;ve learned a few things
+to streamline our maintenance process and would love to share the things
+that made our lives easier.</p>
+
+<p>When looking at what was eating up our time, we found the differences
+between our CI environment and average developer’s environment was at
+the forefront. Most of us at Instructure use Macs, a few of us Windows,
+and there are a handful Linux users. Among us, browser choice varies,
+but the most popular is Chrome. Engineers develop locally using their
+own OS, browser type/version and the Ruby Selenium driver to power
+tests. Listed below are a few of the differences we found:</p>
+
+<ol>
+<li> AWS images were Ubuntu</li>
+<li> Variance in browser versions</li>
+<li> Selenium grid uses Java stand alone server VS local specs running using native Ruby driver</li>
+<li> Variance in native event capabilities VS Jenkins running exclusively using native events</li>
+<li> Parallelization in CI vs single threaded specs in developer’s environment</li>
+</ol>
+
+
+<!-- more -->
+
+
+<p>We began to strive for consistency between the average dev environment and
+the CI environments, where we could, without sacraficing production like implementation.
+This helped with mitigating many intermittency issues. During this
+process, it simplified the CI upgrade process while edging maintenance
+towards dreamland and further from Elm St.</p>
+
+<p>So, what did we do to make this happen? First, all logic for Selenium
+driver code was changed from Selenium grid\Java stand-alone server to
+the native Ruby Selenium driver. This change immediately resulted in
+noticeable stability improvements, and easier resolution for
+intermittency creep from tests.</p>
+
+<p>In the past, we had challenges reproducing errors, locally, that our CI
+server would throw because of the variance in environments. We spent a
+lot of time debugging these errors, and had to create CI environments
+that devs could SSH into, to debug the spec failures. This was highly
+inefficient, and not consistent with the nature or true purpose of CI.
+Making the two environments consistent gave us more time to work on
+other things, instead of time-consuming and meaningless failures that were challenging and
+intensive to debug. Now we are easily able to (for the most part)
+reproduce all errors produced by our CI server.</p>
+
+<p>Along the way, we also found Selenium grid was not the ideal solution for us.
+The main reason being the variance in spec outcomes
+between dev environments and CI, resulting in too much overhead for
+maintenance and upgrades, while also sapping dev time on CI spec
+debugging. Many shops use a hardware infrastructure that is distributed
+across multiple boxes and the tests are farmed out to them; this is
+ideal for Selenium grid. We, however, prefer one big box with
+parallelization done internally, reducing the need for a Java stand-alone
+server and Selenium grid. Capabilities for the drivers are consumed from
+config files written at runtime for different browsers and we have no
+need to push each test to a Selenium hub to be farmed out to a worker.
+We found this complicated setup offered little reward and brought on
+noticeable burden in maintenance and stability while introducing a
+variance in spec outcomes.</p>
+
+<p>Making these changes made our lives noticeably easier. When managing
+or implementing a CI environment, we believe it&rsquo;s prudent to not only consider your core
+tech architecture, but the relationship with your developer&rsquo;s workflow.
+Although complex implementations of Selenium grid and multiple browsers can be beneficial,
+it may add more complications than are worth it.
+We recommend a lean implementation of Selenium, using the driver of the native application
+language for tighter integration and better maintenance with more consistency between test runs.</p>
+]]></content>
+  </entry>
+  
+</feed>
