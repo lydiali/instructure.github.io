@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: open-source | Instructure Tech Blog]]></title>
+  <link href="http://instructure.github.io/blog/categories/open-source/atom.xml" rel="self"/>
+  <link href="http://instructure.github.io/"/>
+  <updated>2014-04-22T15:48:21-06:00</updated>
+  <id>http://instructure.github.io/</id>
+  <author>
+    <name><![CDATA[Instructure]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[ImageSweep : drawable management for Android]]></title>
+    <link href="http://instructure.github.io/blog/2014/04/21/android-image-sweep/"/>
+    <updated>2014-04-21T07:29:00-06:00</updated>
+    <id>http://instructure.github.io/blog/2014/04/21/android-image-sweep</id>
+    <content type="html"><![CDATA[<p>Software engineering is full of trade-offs: speed/memory usage, features/bugs, etc.
+The list goes on and on. The Android team here at Instructure found an interesting trade-off: developer-time versus application size.
+As we get new icons/images from our UI/UX team, we have two choices: bundle all of them into the application or add them as they&rsquo;re needed in our project.
+The trade-off becomes relatively straight-forward: either we spend time constantly adding images to our project or the user has to deal with their size when they install our application.</p>
+
+<p>At a high-level, the solution is simple: find all the unused drawables in the project and remove them when you build for release.
+Historically that&rsquo;s been a tedious and error-prone process, but not anymore.
+I&rsquo;m proud to announce a new open-source script from Instructure: <a href="https://github.com/instructure/android-ImageSweep">ImageSweep</a>.
+It will run through every file in your project and check for references to drawable resources using regular expressions to check for instances of <em>R.drawable.</em> and <em>@drawable/</em>.
+The script will then iterate through the resource folder and delete ALL unused drawable resources.</p>
+
+<p>It&rsquo;s extremely easy to use. Simply run:</p>
+
+<pre><code>    python ImageSweep.py project_src_directory
+</code></pre>
+
+<p>where <code>project_src_directory</code> is the relative or absolute file-path where your source code lives.
+Make sure the chosen directory contains <em>all</em> of your source code and AndroidManifest.xml, but none of the libraries you&rsquo;ve included. The script auto-determines where the project&rsquo;s resource folder is and libraries can potentially break this detection.</p>
+
+<p>We recently added this script to our release process for <a href="https://play.google.com/store/apps/details?id=com.instructure.candroid">Canvas for Android</a>.
+In that project, we were able to delete 2,593 files for a total of 72.37 Mbs freed on disk.
+This correlated to a <em>46%</em> size decrease on the apk itself and <em>26%</em> size decrease on the installed application.</p>
+
+<p>To get started, visit the <a href="https://github.com/instructure/android-ImageSweep">project homepage</a>. Take note of the warnings in the README prior to using the script.</p>
+]]></content>
+  </entry>
+  
+</feed>
